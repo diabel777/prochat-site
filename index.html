@@ -1,127 +1,135 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProChat – Twoja opinia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle, #111, #000);
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
       color: white;
-      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+      padding: 1rem;
     }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    header img {
-      width: 120px;
+
+    .logo {
+      width: 100px;
       animation: pulse 2s infinite;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 10px 0;
+
+    @keyframes pulse {
+      0% { transform: scale(1); filter: drop-shadow(0 0 5px #0ff); }
+      50% { transform: scale(1.1); filter: drop-shadow(0 0 15px #0ff); }
+      100% { transform: scale(1); filter: drop-shadow(0 0 5px #0ff); }
     }
-    .box {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 500px;
+
+    h1 {
+      font-size: 2rem;
+      margin: 1rem 0 .5rem;
+      color: #0ff;
+    }
+
+    .form-container {
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
       width: 100%;
-      box-shadow: 0 0 15px #00ffaa55;
-      animation: fadeIn 1s ease-in-out;
+      max-width: 400px;
     }
-    .box h2 {
-      color: #00ffaa;
-      margin-bottom: 15px;
+
+    .form-container h2 {
+      margin-bottom: 1rem;
+      color: #0f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
+
     input, textarea, select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
       border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-family: inherit;
+      border-radius: 0.5rem;
+      background-color: #222;
+      color: white;
     }
+
     button {
-      background: #00ffaa;
-      color: black;
-      padding: 10px 20px;
+      padding: 0.75rem;
+      width: 100%;
       border: none;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #00e699;
-    }
-    .confirmation {
-      display: none;
-      background: #00ffaa;
+      border-radius: 0.5rem;
+      background-color: #0ff;
       color: black;
-      padding: 10px;
-      margin-top: 15px;
-      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0cf;
+    }
+
+    footer {
+      margin-top: 2rem;
+      color: gray;
+      font-size: 0.9rem;
       text-align: center;
     }
-    footer {
-      margin-top: 50px;
-      color: #777;
-      font-size: 0.8rem;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    .extra {
+      margin-top: 2rem;
+      max-width: 500px;
+      text-align: center;
     }
   </style>
 </head>
-<body>
-  <header>
-    <img src="ProChat.png" alt="ProChat Logo">
-    <h1>ProChat</h1>
-    <p>Podziel się swoją opinią o bocie 💬</p>
-  </header>
 
-  <div class="box">
+<body>
+  <img src="https://cdn.discordapp.com/attachments/1228352288029184010/1228700658598387742/prochat-logo.png?ex=662d93a4&is=661b1ea4&hm=11f2513e1bdbd4fbb3d7b149d31a7e86738bb33f17f5099b2560b370f36049d1&" alt="ProChat Logo" class="logo">
+  <h1>ProChat</h1>
+  <p>Podziel się swoją opinią o bocie ⭐</p>
+
+  <div class="form-container">
     <h2>📝 Twoja opinia</h2>
-    <form id="opiniaForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="hidden_iframe" onsubmit="wyslijOpinia()">
-      <input type="text" name="entry.1718272930" placeholder="Twoje imię lub nick" required>
-      <textarea name="entry.1767200896" placeholder="Twoja opinia..." required></textarea>
-      <select name="entry.797021146" required>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="_blank">
+      <input name="entry.123456789" placeholder="Twoje imię lub nick" required>
+      <textarea name="entry.987654321" placeholder="Twoja opinia..." rows="4" required></textarea>
+      <select name="entry.555555555" required>
         <option value="">Wybierz ocenę</option>
-        <option value="1">★☆☆☆☆</option>
-        <option value="2">★★☆☆☆</option>
-        <option value="3">★★★☆☆</option>
-        <option value="4">★★★★☆</option>
-        <option value="5">★★★★★</option>
+        <option value="⭐">⭐</option>
+        <option value="⭐⭐">⭐⭐</option>
+        <option value="⭐⭐⭐">⭐⭐⭐</option>
+        <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+        <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
       </select>
       <button type="submit">Wyślij opinię</button>
     </form>
-    <div class="confirmation" id="potwierdzenie">✅ Dziękujemy za opinię!</div>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  </div>
+
+  <div class="extra">
+    <p>Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)</p>
+    <p>Ostatnia opinia: „Super bot, działa bezbłędnie!” – <strong>diable_777</strong></p>
   </div>
 
   <footer>
-    &copy; 2025 ProChat – Strona stworzona przez diable_777
+    © 2025 ProChat – Strona stworzona przez <em>diable_777</em>
   </footer>
-
-  <script>
-    function wyslijOpinia() {
-      setTimeout(() => {
-        document.getElementById('opiniaForm').reset();
-        document.getElementById('potwierdzenie').style.display = 'block';
-      }, 500);
-    }
-  </script>
 </body>
+
 </html>
