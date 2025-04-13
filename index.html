@@ -107,7 +107,7 @@
     </div>
 
     <div class="info">
-      🤖 <strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.  
+      🤖 <strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.
       <br><br>⚠️ Obecnie bot jest w <b>trybie beta</b>. Nowości wkrótce!
     </div>
 
@@ -118,32 +118,33 @@
 
     <div class="stats">
       <h2>📊 Statystyki</h2>
-      <p><span class="label">👤 Użytkownicy:</span> <span id="users" class="value">217</span></p>
-      <p><span class="label">🌐 Serwery:</span> <span id="guilds" class="value">12</span></p>
-      <p><span class="label">💻 Komendy:</span> <span id="commands" class="value">16</span></p>
+      <p><span class="label">👤 Użytkownicy:</span> <span id="users" class="value">0</span></p>
+      <p><span class="label">🌐 Serwery:</span> <span id="guilds" class="value">0</span></p>
+      <p><span class="label">💻 Komendy:</span> <span id="commands" class="value">0</span></p>
     </div>
 
     <div class="feedback">
       <h2>📝 Twoja opinia</h2>
-      <form onsubmit="event.preventDefault(); alert('Dziękujemy za opinię!');">
-        <input type="text" placeholder="Twój nick lub imię" required />
-        <select required>
+      <form action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <input type="text" name="entry.1305537706" placeholder="Twój nick lub imię" required />
+        <textarea name="entry.2005620554" rows="4" placeholder="Napisz swoją opinię..." required></textarea>
+        <select name="entry.1045781291" required>
           <option value="">Wybierz ocenę</option>
-          <option value="1">⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="⭐">⭐</option>
+          <option value="⭐⭐">⭐⭐</option>
+          <option value="⭐⭐⭐">⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
         </select>
-        <textarea rows="4" placeholder="Napisz swoją opinię..." required></textarea>
         <button type="submit">Wyślij opinię</button>
       </form>
     </div>
-
     <footer>
       © 2025 ProChat | Stworzone przez diable_777
     </footer>
   </div>
+
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
   <script>
     // Gwiazdy w tle
