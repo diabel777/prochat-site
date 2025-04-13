@@ -3,179 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProChat</title>
+  <title>ProChat – Bot Discord</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: radial-gradient(circle at center, #111 0%, #000 100%);
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
       color: #fff;
-      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
     }
-    .container {
-      text-align: center;
-      padding: 40px 20px;
-      animation: fadeIn 1.5s ease-in;
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #0f0f0f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0ff;
+      font-size: 2em;
+      z-index: 9999;
+      animation: fadeOut 2s ease 2s forwards;
     }
-    .logo {
-      width: 120px;
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+    img {
+      width: 100px;
       animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
     h1 {
       font-size: 2.5rem;
       margin: 10px 0;
+      animation: slideIn 1s ease;
     }
     .btn {
-      background: #00ffcc;
-      color: #000;
+      background-color: #00ffaa;
       border: none;
       padding: 10px 20px;
-      margin: 10px;
+      margin: 5px;
+      font-size: 1rem;
       border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s ease;
+      color: #000;
+      text-decoration: none;
+      transition: transform 0.3s;
     }
     .btn:hover {
       transform: scale(1.1);
     }
-    .update-box, .side-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
+    .update-box {
+      margin-top: 20px;
+      border: 2px solid #00ffaa;
+      padding: 10px;
       border-radius: 10px;
-      margin: 20px auto;
-      width: fit-content;
-      border: 1px solid #00ffcc;
-      animation: slideIn 1.2s ease-in-out;
-    }
-    .rating-section {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid #00ffcc;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 30px;
-      width: 90%;
-      max-width: 600px;
       animation: fadeIn 2s ease;
     }
-    .stars span {
-      font-size: 2rem;
-      color: #444;
-      cursor: pointer;
+    .rating-box {
+      margin-top: 30px;
+      border: 2px solid #ffaa00;
+      padding: 15px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 600px;
+      animation: fadeInUp 1.5s ease;
     }
-    .stars span.active {
+    .stars {
+      font-size: 2rem;
+      cursor: pointer;
+      color: #555;
+    }
+    .stars:hover,
+    .stars.selected {
       color: gold;
     }
-    .opinions {
-      margin-top: 20px;
-      text-align: left;
-    }
-    .opinion {
-      background: rgba(255, 255, 255, 0.06);
-      margin: 10px 0;
+    textarea, input {
+      width: 100%;
       padding: 10px;
-      border-radius: 8px;
-      border-left: 3px solid #00ffcc;
-      animation: fadeIn 1s ease-in-out;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      font-family: 'Orbitron';
     }
-    .reply {
-      margin-left: 20px;
-      font-size: 0.9rem;
-      color: #ccc;
+    .submit-btn {
+      background-color: #ffaa00;
+      margin-top: 10px;
+      font-weight: bold;
     }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    @keyframes slideIn {
-      from { transform: translateY(30px); opacity: 0; }
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
+    }
+    .stats {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      border: 2px solid #00ffaa;
+      border-radius: 10px;
+      text-align: right;
+    }
+    @media (max-width: 768px) {
+      .stats {
+        position: static;
+        margin-top: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="ProChat.png" alt="ProChat Logo" class="logo" />
-    <h1>ProChat</h1>
-    <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">Dodaj Bota</a>
-    <a class="btn" href="https://discord.gg/c7gcHErE">Support</a>
-
-    <div class="update-box">
-      <h3>📢 Aktualizacje</h3>
-      <p>🔄 Aktualizacje 5 razy w tygodniu! Możesz proponować zmiany na Discordzie!</p>
-      <p>📅 13.04.2025 – Bot bardziej po angielsku</p>
-      <p>📅 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
-    </div>
-
-    <div class="side-box"> 
-      <strong>Funkcje</strong>
-      <ul>
-        <li>Automatyczne kanały</li>
-        <li>Panel zarządzania</li>
-        <li>Responsywność</li>
-      </ul>
-    </div>
-
-    <div class="side-box">
-      <strong>ProChat w liczbach</strong><br>
-      Online 24/7<br>
-      Wersja: 1.0 BETA
-    </div>
-
-    <div class="rating-section">
-      <h3>Co sądzisz o ProChat?</h3>
-      <div class="stars" id="stars">
-        <span data-rate="1">★</span><span data-rate="2">★</span><span data-rate="3">★</span><span data-rate="4">★</span><span data-rate="5">★</span>
-      </div>
-      <input type="text" id="userName" placeholder="Twoje imię" style="margin-top:10px; padding:5px; width:90%; max-width:300px;">
-      <textarea id="comment" placeholder="Twoja opinia..." style="margin-top:10px; width:90%; max-width:500px; height:60px; padding:5px;"></textarea>
-      <br>
-      <button class="btn" onclick="submitReview()">Wyślij opinię</button>
-      <div class="opinions" id="opinions"></div>
-    </div>
+  <div class="loader">Ładowanie strony...</div>
+  <div class="stats">
+    <p><strong>ProChat w liczbach</strong></p>
+    <p>Online 24/7<br>Wersja: 1.0 BETA</p>
   </div>
-
+  <img src="ProChat.png" alt="ProChat Logo">
+  <h1>ProChat</h1>
+  <div>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">Dodaj Bota</a>
+    <a href="https://discord.gg/c7gcHErE" class="btn">Support</a>
+  </div>
+  <div class="update-box">
+    <p>📢 <strong>Aktualizacje</strong></p>
+    <p>🔹 Aktualizacje 5 razy w tygodniu! Możesz proponować zmiany na Discordzie!</p>
+    <p>📅 13.04.2025 – Bot bardziej po angielsku</p>
+    <p>📅 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
+  </div>
+  <div class="rating-box">
+    <h2>Oceń Bota</h2>
+    <div>
+      <span class="stars" onclick="rate(1)">★</span>
+      <span class="stars" onclick="rate(2)">★</span>
+      <span class="stars" onclick="rate(3)">★</span>
+      <span class="stars" onclick="rate(4)">★</span>
+      <span class="stars" onclick="rate(5)">★</span>
+    </div>
+    <input type="text" placeholder="Twoja nazwa (autor)">
+    <textarea rows="3" placeholder="Twoja opinia o bocie..."></textarea>
+    <button class="btn submit-btn">Wyślij opinię</button>
+  </div>
   <script>
-    const stars = document.querySelectorAll('#stars span');
-    let currentRating = 0;
-    stars.forEach(star => {
-      star.addEventListener('click', () => {
-        currentRating = star.getAttribute('data-rate');
-        stars.forEach(s => s.classList.remove('active'));
-        for (let i = 0; i < currentRating; i++) {
-          stars[i].classList.add('active');
-        }
+    let stars = document.querySelectorAll('.stars');
+    function rate(n) {
+      stars.forEach((s, i) => {
+        s.classList.toggle('selected', i < n);
       });
-    });
-
-    function submitReview() {
-      const name = document.getElementById('userName').value;
-      const comment = document.getElementById('comment').value;
-      const box = document.createElement('div');
-      box.className = 'opinion';
-      box.innerHTML = `<strong>${name}</strong> – ${'★'.repeat(currentRating)}<br>${comment}<br><a href="#" onclick="replyTo(this)">💬 Odpowiedz</a><div class='reply-box'></div>`;
-      document.getElementById('opinions').prepend(box);
-      document.getElementById('comment').value = '';
-      document.getElementById('userName').value = '';
-      stars.forEach(s => s.classList.remove('active'));
-    }
-
-    function replyTo(link) {
-      const box = link.nextElementSibling;
-      if (box.innerHTML === '') {
-        box.innerHTML = `<input type='text' placeholder='Twoja odpowiedź' style='width:80%; padding:4px;'><button class='btn' onclick='sendReply(this)'>Wyślij</button>`;
-      }
-    }
-
-    function sendReply(btn) {
-      const input = btn.previousElementSibling;
-      const replyText = input.value;
-      const wrapper = btn.parentElement;
-      wrapper.innerHTML = `<div class='reply'>💬 ${replyText}</div>`;
     }
   </script>
 </body>
