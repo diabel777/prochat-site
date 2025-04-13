@@ -1,173 +1,126 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProChat – Bot Discord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProChat – Twoja opinia</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(to right, #0f0f0f, #1a1a1a);
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle, #111, #000);
+      color: white;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
     }
-    .loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: #0f0f0f;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #0ff;
-      font-size: 2em;
-      z-index: 9999;
-      animation: fadeOut 2s ease 2s forwards;
+    header {
+      text-align: center;
+      margin-bottom: 40px;
     }
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
-    img {
-      width: 100px;
+    header img {
+      width: 120px;
       animation: pulse 2s infinite;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    h1 {
+    header h1 {
       font-size: 2.5rem;
       margin: 10px 0;
-      animation: slideIn 1s ease;
     }
-    .btn {
-      background-color: #00ffaa;
-      border: none;
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 1rem;
-      border-radius: 5px;
-      color: #000;
-      text-decoration: none;
-      transition: transform 0.3s;
+    .box {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 0 15px #00ffaa55;
+      animation: fadeIn 1s ease-in-out;
     }
-    .btn:hover {
-      transform: scale(1.1);
+    .box h2 {
+      color: #00ffaa;
+      margin-bottom: 15px;
     }
-    .update-box {
-      margin-top: 20px;
-      border: 2px solid #00ffaa;
-      padding: 10px;
-      border-radius: 10px;
-      animation: fadeIn 2s ease;
-    }
-    .rating-box {
-      margin-top: 30px;
-      border: 2px solid #ffaa00;
-      padding: 15px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 600px;
-      animation: fadeInUp 1.5s ease;
-    }
-    .stars {
-      font-size: 2rem;
-      cursor: pointer;
-      color: #555;
-    }
-    .stars:hover,
-    .stars.selected {
-      color: gold;
-    }
-    textarea, input {
+    input, textarea, select {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
+      margin-bottom: 15px;
       border: none;
-      border-radius: 5px;
-      font-family: 'Orbitron';
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
     }
-    .submit-btn {
-      background-color: #ffaa00;
-      margin-top: 10px;
+    button {
+      background: #00ffaa;
+      color: black;
+      padding: 10px 20px;
+      border: none;
       font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
     }
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    button:hover {
+      background: #00e699;
+    }
+    .confirmation {
+      display: none;
+      background: #00ffaa;
+      color: black;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 6px;
+      text-align: center;
+    }
+    footer {
+      margin-top: 50px;
+      color: #777;
+      font-size: 0.8rem;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes fadeInUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .stats {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 10px;
-      border: 2px solid #00ffaa;
-      border-radius: 10px;
-      text-align: right;
-    }
-    @media (max-width: 768px) {
-      .stats {
-        position: static;
-        margin-top: 20px;
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="loader">Ładowanie strony...</div>
-  <div class="stats">
-    <p><strong>ProChat w liczbach</strong></p>
-    <p>Online 24/7<br>Wersja: 1.0 BETA</p>
+  <header>
+    <img src="ProChat.png" alt="ProChat Logo">
+    <h1>ProChat</h1>
+    <p>Podziel się swoją opinią o bocie 💬</p>
+  </header>
+
+  <div class="box">
+    <h2>📝 Twoja opinia</h2>
+    <form id="opiniaForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="hidden_iframe" onsubmit="wyslijOpinia()">
+      <input type="text" name="entry.1718272930" placeholder="Twoje imię lub nick" required>
+      <textarea name="entry.1767200896" placeholder="Twoja opinia..." required></textarea>
+      <select name="entry.797021146" required>
+        <option value="">Wybierz ocenę</option>
+        <option value="1">★☆☆☆☆</option>
+        <option value="2">★★☆☆☆</option>
+        <option value="3">★★★☆☆</option>
+        <option value="4">★★★★☆</option>
+        <option value="5">★★★★★</option>
+      </select>
+      <button type="submit">Wyślij opinię</button>
+    </form>
+    <div class="confirmation" id="potwierdzenie">✅ Dziękujemy za opinię!</div>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
   </div>
-  <img src="ProChat.png" alt="ProChat Logo">
-  <h1>ProChat</h1>
-  <div>
-    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">Dodaj Bota</a>
-    <a href="https://discord.gg/c7gcHErE" class="btn">Support</a>
-  </div>
-  <div class="update-box">
-    <p>📢 <strong>Aktualizacje</strong></p>
-    <p>🔹 Aktualizacje 5 razy w tygodniu! Możesz proponować zmiany na Discordzie!</p>
-    <p>📅 13.04.2025 – Bot bardziej po angielsku</p>
-    <p>📅 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
-  </div>
-  <div class="rating-box">
-    <h2>Oceń Bota</h2>
-    <div>
-      <span class="stars" onclick="rate(1)">★</span>
-      <span class="stars" onclick="rate(2)">★</span>
-      <span class="stars" onclick="rate(3)">★</span>
-      <span class="stars" onclick="rate(4)">★</span>
-      <span class="stars" onclick="rate(5)">★</span>
-    </div>
-    <input type="text" placeholder="Twoja nazwa (autor)">
-    <textarea rows="3" placeholder="Twoja opinia o bocie..."></textarea>
-    <button class="btn submit-btn">Wyślij opinię</button>
-  </div>
+
+  <footer>
+    &copy; 2025 ProChat – Strona stworzona przez diable_777
+  </footer>
+
   <script>
-    let stars = document.querySelectorAll('.stars');
-    function rate(n) {
-      stars.forEach((s, i) => {
-        s.classList.toggle('selected', i < n);
-      });
+    function wyslijOpinia() {
+      setTimeout(() => {
+        document.getElementById('opiniaForm').reset();
+        document.getElementById('potwierdzenie').style.display = 'block';
+      }, 500);
     }
   </script>
 </body>
