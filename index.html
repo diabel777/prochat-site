@@ -2,186 +2,168 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ProChat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProChat – Twoja opinia</title>
   <style>
-    html, body {
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    body {
       margin: 0;
       padding: 0;
-      background: #0a0a0a;
+      font-family: 'Orbitron', sans-serif;
+      background: black;
       color: white;
-      font-family: 'Segoe UI', sans-serif;
       overflow-x: hidden;
     }
 
-    /* === ANIMACJA ŁADOWANIA === */
-    #loader {
+    body::before {
+      content: "";
       position: fixed;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,255,255,0.05) 0%, transparent 70%);
+      animation: moveStars 30s linear infinite;
+      z-index: -1;
     }
 
-    .spinner {
-      border: 6px solid #222;
-      border-top: 6px solid #00ffff;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
+    @keyframes moveStars {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-1000px); }
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    #content {
-      display: none;
-      background-image: url('ProChat.png');
-      background-size: cover;
-      background-position: center;
-      min-height: 100vh;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.75);
-      padding: 60px 20px;
+    .container {
       text-align: center;
+      padding: 2rem;
+    }
+
+    .logo {
+      width: 100px;
+      margin-bottom: 1rem;
     }
 
     h1 {
-      font-size: 56px;
-      color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
-      animation: fadeInDown 1.2s ease;
+      font-size: 2.5rem;
+      color: cyan;
     }
 
-    .slogan {
-      font-size: 20px;
-      color: #ccc;
-      margin-bottom: 40px;
-      animation: fadeIn 1.5s ease;
+    .buttons {
+      margin: 1rem 0;
     }
 
-    .btn {
-      display: inline-block;
-      background: linear-gradient(90deg, #00ffcc, #00ccff);
-      padding: 14px 28px;
-      margin: 10px;
-      border-radius: 8px;
-      font-size: 18px;
-      color: #000;
+    .buttons a {
+      background-color: cyan;
+      padding: 0.6rem 1.2rem;
+      margin: 0 0.5rem;
+      border-radius: 12px;
+      color: black;
       text-decoration: none;
       font-weight: bold;
-      transition: 0.3s ease;
-      box-shadow: 0 0 10px #00ffff;
-      animation: fadeInUp 2s ease;
     }
 
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff;
+    .opinion-box {
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 400px;
+      margin: 2rem auto;
+      box-shadow: 0 0 15px cyan;
     }
 
-    .box {
-      max-width: 700px;
-      margin: 40px auto;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 20px;
+    .opinion-box h2 {
+      color: lime;
+      margin-bottom: 1rem;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.6rem;
+      background-color: cyan;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .update-box {
+      margin-top: 3rem;
+      padding: 1rem;
       border-radius: 15px;
-      border: 2px solid #00ffff;
-      animation: fadeInUp 2.5s ease;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid cyan;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .box h2 {
-      color: #00ccff;
-      margin-bottom: 15px;
+    .update-box h3 {
+      color: #00ffff;
+      margin-bottom: 0.5rem;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .update-box ul {
       text-align: left;
-    }
-
-    li::before {
-      content: "🔹 ";
-    }
-
-    footer {
-      margin-top: 50px;
-      color: #888;
-      font-size: 14px;
-      animation: fadeIn 3s ease;
-    }
-
-    /* === Animacje === */
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot logo" class="logo" />
+    <h1>ProChat</h1>
+    <p>Podziel się swoją opinią o bocie ⭐</p>
 
-<!-- Ładowanie -->
-<div id="loader">
-  <div class="spinner"></div>
-</div>
-
-<!-- Zawartość strony -->
-<div id="content">
-  <div class="overlay">
-    <h1>PROCHAT</h1>
-    <p class="slogan">Twój przyszły bot – szybki, funkcjonalny i profesjonalny.</p>
-
-    <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj Bota</a>
-    <a class="btn" href="https://discord.gg/c7gcHErE">🛠️ Support</a>
-
-    <div class="box">
-      <h2>📝 Aktualizacje</h2>
-      <p>
-        ✅ Aktualizacje codziennie od pon. do pt!<br>
-        📅 <strong>13.04.2025:</strong> Wersja testowa – ENG<br>
-        📅 <strong>14.04.2025:</strong> Start PL wersji!
-      </p>
+    <div class="buttons">
+      <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj bota</a>
+      <a href="https://discord.gg/c7gcHErE">🔊 Support</a>
     </div>
 
-    <div class="box">
-      <h2>🚀 Funkcje (wkrótce)</h2>
+    <div class="opinion-box">
+      <h2>📄 Twoja opinia</h2>
+      <form>
+        <input type="text" placeholder="Twoje imię lub nick" required />
+        <textarea placeholder="Twoja opinia..." required></textarea>
+        <select required>
+          <option value="">Wybierz ocenę</option>
+          <option>⭐</option>
+          <option>⭐⭐</option>
+          <option>⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐</option>
+          <option>⭐⭐⭐⭐⭐</option>
+        </select>
+        <button type="submit">Wyślij opinię</button>
+      </form>
+      <p>Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)</p>
+      <p>Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777</p>
+    </div>
+
+    <div class="update-box">
+      <h3>🛠️ Aktualizacje</h3>
       <ul>
-        <li>System powitań i pożegnań</li>
-        <li>AutoVoice</li>
-        <li>Moderacja, levele, statystyki</li>
-        <li>Panel zarządzania</li>
+        <li>🔄 Bot jest w <strong>trybie beta</strong> – mogą występować drobne błędy.</li>
+        <li>📦 Nowa wersja 1.0.3 – poprawiona responsywność na telefonach.</li>
+        <li>🌌 Dodano animowane tło z gwiazdami.</li>
+        <li>📋 Formularz opinii działa z Google Sheets.</li>
       </ul>
     </div>
 
-    <footer>Strona zrobiona przez <strong>diable_777</strong> © 2025</footer>
+    <div class="footer">
+      © 2025 ProChat – Strona stworzona przez <strong>diable_777</strong>
+    </div>
   </div>
-</div>
-
-<!-- Skrypt: po załadowaniu ukryj loader -->
-<script>
-  window.addEventListener('load', () => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("content").style.display = "block";
-  });
-</script>
-
 </body>
 </html>
