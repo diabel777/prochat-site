@@ -1,117 +1,18 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProChat</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      background-image: url('ProChat.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 100vh;
-    }
+<script>
+  // 🧹 Usuwamy zawartość strony
+  document.body.innerHTML = '';
 
-    .beta-banner {
-      background-color: #ffcc00;
-      color: #000;
-      text-align: center;
-      padding: 10px 0;
-      font-weight: bold;
-      font-size: 18px;
-    }
+  // 🛠️ Tworzymy nową zawartość
+  const container = document.createElement('div');
+  container.style.padding = '100px 20px';
+  container.style.textAlign = 'center';
+  container.style.color = 'white';
+  container.innerHTML = `
+    <h1 style="font-size: 48px; text-shadow: 0 0 10px #00ffcc;">Nowa Strona ProChat</h1>
+    <p style="font-size: 20px;">To jest nowa zawartość strony. Wszystko zostało zresetowane.</p>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands"
+       style="background:#00ff88;padding:12px 24px;border-radius:10px;color:black;text-decoration:none;font-weight:bold;">Dodaj Bota</a>
+  `;
 
-    .container {
-      text-align: center;
-      padding-top: 100px;
-      background-color: rgba(0, 0, 0, 0.65);
-      min-height: calc(100vh - 50px);
-    }
-
-    img {
-      width: 200px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin: 0;
-    }
-
-    .btn {
-      background-color: #00ff88;
-      border: none;
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      color: black;
-      transition: 0.3s;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background-color: #00cc66;
-    }
-
-    .update-box {
-      margin-top: 40px;
-      background: rgba(0, 51, 102, 0.85); /* niebieskawy półprzezroczysty */
-      border: 2px solid #0099ff;
-      display: inline-block;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 90%;
-    }
-
-    .update-box h2 {
-      margin-top: 0;
-      color: #00ccff;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 36px;
-      }
-
-      .btn {
-        font-size: 16px;
-        padding: 10px 20px;
-      }
-
-      .update-box {
-        font-size: 14px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="beta-banner">
-    🔧 ProChat jest obecnie w trybie BETA – mogą występować błędy!
-  </div>
-
-  <div class="container">
-    <img src="ProChat.png" alt="ProChat Logo" />
-    <h1>PROCHAT</h1>
-    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">Dodaj Bota</a>
-    <a href="https://discord.gg/c7gcHErE" class="btn">Support</a>
-
-    <div class="update-box">
-      <h2>📝 Aktualizacje</h2>
-      <p>
-        ✅ Aktualizacje od poniedziałku do piątku – czyli 5 razy w tygodniu!<br>
-        💬 Propozycje zmian można zgłaszać na Discordzie.<br>
-        📅 <strong>13.04.2025</strong>: Bot bardziej po angielsku, mało polskiego.<br>
-        📅 <strong>14.04.2025</strong>: Spróbujemy zrobić pełną wersję po polsku!
-      </p>
-    </div>
-  </div>
-</body>
-</html>
+  document.body.appendChild(container);
+</script>
