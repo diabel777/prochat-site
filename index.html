@@ -1,120 +1,112 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProChat</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProChat - Bot Discord</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    @keyframes pulsuj {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes ladowanieAnimacja {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-      100% { transform: translateY(0); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #0f0f0f, #1a1a1a);
       color: white;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
       overflow-x: hidden;
     }
 
     .loader {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: black;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      color: #00ffcc;
       display: flex;
-      justify-content: center;
       align-items: center;
-      z-index: 9999;
-      animation: fadeOut 2s ease forwards;
-      animation-delay: 2s;
-    }
-
-    .loader h1 {
-      font-size: 32px;
-      color: #00ff88;
-      animation: ladowanieAnimacja 1s infinite;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 1000;
+      animation: fadein 1s ease-in-out;
     }
 
     .content {
-      opacity: 0;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 2.2s;
+      display: none;
+      padding: 40px;
+      animation: fadein 2s ease-in-out;
     }
 
-    .container {
-      text-align: center;
-      padding-top: 100px;
-    }
-
-    .logo {
-      width: 200px;
-      animation: pulsuj 2s infinite;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      animation: fadeIn 1.5s ease;
-    }
-
-    .btn {
-      background-color: #00ff88;
-      border: none;
-      padding: 12px 24px;
-      margin: 10px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      color: black;
-      transition: 0.3s;
-      animation: fadeIn 2s ease;
-    }
-
-    .btn:hover {
-      background-color: #00cc66;
-    }
-
-    .update-box {
-      margin-top: 40px;
-      background: #000000cc;
-      display: inline-block;
-      padding: 20px;
-      border-radius: 10px;
-      animation: fadeIn 2.5s ease;
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .side-box {
       position: fixed;
-      top: 20%;
+      top: 50%;
+      transform: translateY(-50%);
       width: 180px;
-      background: #111111ee;
-      color: white;
+      background: #111;
+      border: 2px solid #00ffcc;
       padding: 20px;
-      border-radius: 10px;
-      animation: fadeIn 2s ease;
+      border-radius: 12px;
+      animation: slidein 2s ease-in-out;
     }
 
-    .left-box {
-      left: 20px;
+    .left-box { left: 20px; }
+    .right-box { right: 20px; }
+
+    @keyframes slidein {
+      from { transform: translateY(-50%) scale(0.8); opacity: 0; }
+      to { transform: translateY(-50%) scale(1); opacity: 1; }
     }
 
-    .right-box {
-      right: 20px;
+    .container {
+      text-align: center;
+      margin: 60px auto;
+      max-width: 800px;
+    }
+
+    .container img {
+      width: 200px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background: #00ffcc;
+      color: #000;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #00ffaa;
+      transform: scale(1.05);
+    }
+
+    .update-box {
+      background: #1a1a1a;
+      margin-top: 40px;
+      padding: 20px;
+      border-left: 5px solid #00ff88;
+      animation: fadein 2s ease-in-out;
     }
   </style>
 </head>
@@ -134,25 +126,33 @@
     </div>
 
     <div class="side-box right-box">
-      <h3>Status</h3>
-      <p>Bot w trybie BETA</p>
+      <h3>ProChat w liczbach</h3>
       <p>Online 24/7</p>
-      <p>Wersja 1.0-BETA</p>
+      <p>Wersja: 1.0 BETA</p>
     </div>
 
     <div class="container">
-      <img src="ProChat.png" alt="ProChat Logo" class="logo" />
-      <h1>PROCHAT</h1>
+      <img src="ProChat.png" alt="ProChat Logo" />
+      <h1>ProChat</h1>
       <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">Dodaj Bota</a>
       <a href="https://discord.gg/c7gcHErE" class="btn">Support</a>
 
       <div class="update-box">
-        <h2 style="color:#00ff88">Aktualizacje</h2>
-        <p>✅ Aktualizacje od poniedziałku do piątku – 5 razy w tygodniu! Możesz proponować zmiany na Discordzie!</p>
-        <p>📅 13.04.2025 – Bot bardziej po angielsku</p>
-        <p>📅 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
+        <h3 style="color:#00ff88">📢 Aktualizacje</h3>
+        <p>🔄 Aktualizacje 5 razy w tygodniu! Możesz proponować zmiany na Discordzie!</p>
+        <p>🛠️ 13.04.2025 – Bot bardziej po angielsku</p>
+        <p>🌐 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
       </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelector('.loader').style.display = 'none';
+        document.querySelector('.content').style.display = 'block';
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
