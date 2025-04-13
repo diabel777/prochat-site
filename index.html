@@ -2,17 +2,17 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProChat – Twoja opinia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    body, html {
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Orbitron', sans-serif;
-      overflow-x: hidden;
-      background: black;
       color: white;
+      background-color: black;
+      overflow-x: hidden;
     }
 
     #starfield {
@@ -22,134 +22,134 @@
       z-index: -1;
       width: 100%;
       height: 100%;
-      background: #000;
+      background: black;
     }
 
-    header {
+    .container {
       text-align: center;
-      padding: 40px 20px 20px;
+      padding: 60px 20px;
     }
 
-    header img {
-      width: 120px;
-      border-radius: 20px;
+    .logo-img {
+      width: 100px;
       margin-bottom: 10px;
     }
 
     h1 {
-      font-size: 3em;
-      color: #00f7ff;
+      font-size: 48px;
+      color: #00ffff;
+      margin: 0;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 18px;
     }
 
     .buttons {
-      margin-top: 10px;
+      margin: 20px 0;
     }
 
     .buttons a {
-      background: #00e1ff;
-      color: black;
-      padding: 10px 20px;
-      margin: 5px;
-      border-radius: 10px;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .buttons a:hover {
-      background: #0ff;
-    }
-
-    .aktualizacja {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .aktualizacja h2 {
-      color: #ff4e4e;
-    }
-
-    .form-box {
-      background: rgba(0,0,0,0.7);
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin: 40px auto;
-      box-shadow: 0 0 20px #0ff;
-    }
-
-    .form-box h2 {
-      margin-bottom: 20px;
-      color: #00ff00;
-    }
-
-    input, textarea, select, button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: none;
+      margin: 0 10px;
+      padding: 10px 20px;
+      background: #00ffff;
+      color: black;
       border-radius: 8px;
-      font-family: 'Orbitron', sans-serif;
+      font-weight: bold;
     }
 
-    button {
-      background: #00e1ff;
+    .update {
+      margin-top: 20px;
+      color: #ff4d4d;
+      font-size: 18px;
+    }
+
+    form {
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffff;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 400px;
+      margin: 30px auto;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    form input, form textarea, form select {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    form button {
+      background-color: #00ccff;
+      color: black;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 8px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .footer {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #999;
-      padding-bottom: 30px;
+    .rating {
+      margin-top: 15px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
     }
   </style>
 </head>
 <body>
   <canvas id="starfield"></canvas>
 
-  <header>
-    <img src="https://cdn.discordapp.com/avatars/1359864369793728743/a478282011b0b18f4c2894086c389162.webp?size=2048" alt="Bot ProChat">
+  <div class="container">
+    <img src="bot.png" alt="ProChat Bot" class="logo-img" />
     <h1>ProChat</h1>
     <p>Podziel się swoją opinią o bocie ⭐</p>
+
     <div class="buttons">
       <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" target="_blank">➕ Dodaj bota</a>
       <a href="https://discord.gg/c7gcHErE" target="_blank">💬 Support</a>
     </div>
-  </header>
 
-  <div class="aktualizacja">
-    <h2>🛠️ Aktualizacja</h2>
-    <p>Bot jest obecnie w <strong>trybie beta</strong>. Więcej nowości już wkrótce!</p>
-  </div>
+    <div class="update">
+      ⚠️ <strong>Aktualizacja</strong><br />
+      Bot jest obecnie w <strong>trybie beta</strong>. Więcej nowości już wkrótce!
+    </div>
 
-  <div class="form-box">
-    <h2>📋 Twoja opinia</h2>
-    <form name="submit-to-google-sheet">
-      <input name="name" type="text" placeholder="Twoje imię lub nick" required>
-      <textarea name="opinion" rows="4" placeholder="Twoja opinia..." required></textarea>
-      <select name="rating" required>
-        <option value="" disabled selected>Wybierz ocenę</option>
+    <form id="opiniaForm">
+      <h3>📝 Twoja opinia</h3>
+      <input type="text" placeholder="Twoje imię lub nick" required />
+      <textarea placeholder="Twoja opinia..." rows="4" required></textarea>
+      <select required>
+        <option value="">Wybierz ocenę</option>
         <option value="5">⭐⭐⭐⭐⭐</option>
         <option value="4">⭐⭐⭐⭐</option>
         <option value="3">⭐⭐⭐</option>
         <option value="2">⭐⭐</option>
         <option value="1">⭐</option>
       </select>
+      <br />
       <button type="submit">Wyślij opinię</button>
+      <div class="rating">
+        Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br />
+        Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777
+      </div>
     </form>
-    <p style="margin-top:15px;">Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br>Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777</p>
+
+    <footer>
+      © 2025 ProChat – Strona stworzona przez diable_777
+    </footer>
   </div>
 
-  <div class="footer">
-    © 2025 ProChat – Strona stworzona przez <strong>diable_777</strong>
-  </div>
-
-  <!-- ANIMACJA GWIAZD -->
   <script>
+    // Efekt gwiazd
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let stars = [];
