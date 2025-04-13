@@ -1,212 +1,137 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProChat - Twoja opinia</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProChat – Twoja opinia</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      background: radial-gradient(ellipse at center, #000000 0%, #090909 100%);
       font-family: 'Orbitron', sans-serif;
-    }
-
-    body {
-      background: radial-gradient(circle at center, #0d0d0d 0%, #000 100%);
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 30px 10px;
-    }
-
-    .logo {
-      margin-top: 20px;
       text-align: center;
-      animation: fadeInDown 1s ease;
     }
 
-    .logo img {
-      height: 60px;
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 0 20px #0ff;
     }
 
     h1 {
-      color: #00f0ff;
-      font-size: 32px;
-      margin-top: 10px;
+      font-size: 2em;
+      color: #00ffff;
     }
 
-    p.subtitle {
-      color: #ccc;
-      margin-bottom: 30px;
+    .logo {
+      width: 100px;
+      margin: 0 auto 20px;
     }
 
-    .form-container {
-      background: #111;
-      border: 2px solid #00ff88;
-      border-radius: 20px;
-      padding: 25px;
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      color: #0f0;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
       width: 100%;
-      max-width: 400px;
-      box-shadow: 0 0 20px #00ff88aa;
-      animation: fadeInUp 1.2s ease;
-    }
-
-    .form-container h2 {
-      color: #00ff00;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    input,
-    textarea,
-    select,
-    button {
-      width: 100%;
-      margin-bottom: 15px;
       padding: 10px;
       border: none;
       border-radius: 8px;
-    }
-
-    input,
-    textarea,
-    select {
-      background: #222;
-      color: #fff;
+      margin-bottom: 10px;
+      font-size: 1em;
     }
 
     button {
-      background: #00f0ff;
-      color: #000;
+      padding: 10px 20px;
+      background-color: #00ffff;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1em;
       font-weight: bold;
-      transition: 0.3s;
     }
 
-    button:hover {
-      background: #00c0cc;
-    }
-
-    .info {
+    .rating {
       margin-top: 20px;
-      text-align: center;
-      font-size: 14px;
-      color: #ccc;
+      color: #ffd700;
     }
 
     .stars {
-      color: gold;
-      font-size: 18px;
+      font-size: 1.2em;
     }
 
-    @keyframes fadeInDown {
-      from {
-        transform: translateY(-30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .footer {
+      margin-top: 30px;
+      font-size: 0.8em;
+      color: #888;
     }
 
-    @keyframes fadeInUp {
-      from {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .buttons {
+      margin-top: 20px;
     }
 
-    .opinions-list {
-      margin-top: 40px;
-      max-width: 500px;
-      width: 100%;
-      background: #111;
-      padding: 20px;
+    .buttons a {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background: #00ffff;
       border-radius: 12px;
-      border: 1px solid #00ff88;
-      box-shadow: 0 0 10px #00ff88aa;
-    }
-
-    .opinion-item {
-      border-bottom: 1px solid #333;
-      padding: 10px 0;
-    }
-
-    .opinion-item:last-child {
-      border-bottom: none;
-    }
-
-    .opinion-author {
+      color: black;
+      text-decoration: none;
       font-weight: bold;
-      color: #00f0ff;
+      display: inline-block;
     }
 
-    .opinion-text {
-      margin: 5px 0;
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="logo">
-    <img src="https://i.imgur.com/Hz3MZFl.png" alt="ProChat Logo">
-    <h1>ProChat</h1>
-    <p class="subtitle">Podziel się swoją opinią o bocie ⭐</p>
+  <img src="https://i.imgur.com/lLdZRAU.png" alt="ProChat Logo" class="logo">
+  <h1>ProChat</h1>
+  <p>Podziel się swoją opinią o bocie ⭐</p>
+
+  <div class="buttons">
+    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" target="_blank">➕ Dodaj bota</a>
+    <a href="https://discord.gg/c7gcHErE" target="_blank">💬 Support</a>
   </div>
 
-  <div class="form-container">
-    <h2>🗨️ Twoja opinia</h2>
+  <div class="container">
     <form action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="_blank">
-      <input name="entry.1235070934" type="text" placeholder="Twoje imię lub nick" required />
-      <textarea name="entry.1893968202" rows="4" placeholder="Twoja opinia..." required></textarea>
-      <select name="entry.74011125" required>
+      <label for="name">🗒️ Twoja opinia</label>
+      <input type="text" name="entry.1965283058" placeholder="Twoje imię lub nick" required>
+      <textarea name="entry.1339375524" placeholder="Twoja opinia..." required></textarea>
+      <select name="entry.2113179439" required>
         <option value="">Wybierz ocenę</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
         <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
       </select>
       <button type="submit">Wyślij opinię</button>
     </form>
   </div>
 
-  <div class="info">
-    <p>Średnia ocena: <span class="stars">⭐⭐⭐⭐✰</span> (4.2/5)</p>
-    <p>Ostatnia opinia: „Super bot, działa bezbłędnie!” – <strong>diable_777</strong></p>
+  <div class="rating">
+    Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br>
+    Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777
   </div>
 
-  <div class="opinions-list">
-    <div class="opinion-item">
-      <div class="opinion-author">diable_777 <span class="stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="opinion-text">Super bot, działa bezbłędnie!</div>
-    </div>
-    <div class="opinion-item">
-      <div class="opinion-author">kamil_dev <span class="stars">⭐⭐⭐⭐</span></div>
-      <div class="opinion-text">Brakuje kilku funkcji, ale i tak mega 🔥</div>
-    </div>
-    <div class="opinion-item">
-      <div class="opinion-author">admin_xx <span class="stars">⭐⭐⭐</span></div>
-      <div class="opinion-text">Działa okej, ale czasem się wiesza.</div>
-    </div>
+  <div class="footer">
+    © 2025 ProChat – Strona stworzona przez <strong>diable_777</strong>
   </div>
-
-  <footer style="margin-top: 50px; color: #555; font-size: 12px; text-align: center;">
-    © 2025 ProChat – Strona stworzona przez <span style="color: #00f0ff;">diable_777</span>
-  </footer>
 </body>
-
 </html>
