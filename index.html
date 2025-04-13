@@ -93,6 +93,25 @@
     button:hover {
       background: #00dddd;
     }
+    .opinion-box {
+      margin-top: 2rem;
+      text-align: left;
+      color: white;
+    }
+    .opinion-entry {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid cyan;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    .opinion-entry .nick {
+      font-weight: bold;
+      color: #00ffff;
+    }
+    .opinion-entry .stars {
+      color: gold;
+    }
   </style>
 </head>
 <body>
@@ -107,8 +126,8 @@
     </div>
 
     <div class="info">
-      🤖 <strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.  
-      <br><br>⚠️ Obecnie bot jest w <b>trybie beta</b>. Nowości wkrótce!
+      <p><strong>🤖 ProChat</strong> to bot Discord do moderacji, rozrywki i automatyzacji.</p>
+      <p><strong>⚠️ Tryb beta:</strong> Bot jest w wersji testowej. Funkcje są stale rozwijane.</p>
     </div>
 
     <div class="update">
@@ -125,19 +144,20 @@
 
     <div class="feedback">
       <h2>📝 Twoja opinia</h2>
-      <form onsubmit="event.preventDefault(); alert('Dziękujemy za opinię!');">
-        <input type="text" placeholder="Twój nick lub imię" required />
-        <select required>
+      <form onsubmit="event.preventDefault(); addOpinion();">
+        <input type="text" id="nick" placeholder="Nazwa użytkownika" required />
+        <textarea id="opinion" rows="4" placeholder="Opinia" required></textarea>
+        <select id="rating" required>
           <option value="">Wybierz ocenę</option>
-          <option value="1">⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="⭐">⭐</option>
+          <option value="⭐⭐">⭐⭐</option>
+          <option value="⭐⭐⭐">⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+          <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
         </select>
-        <textarea rows="4" placeholder="Napisz swoją opinię..." required></textarea>
         <button type="submit">Wyślij opinię</button>
       </form>
+      <div class="opinion-box" id="opinionBox"></div>
     </div>
 
     <footer>
@@ -188,6 +208,24 @@
         document.getElementById("commands").textContent = data.commands;
       })
       .catch(() => console.warn("Nie znaleziono stats.json"));
+
+    // Opinie
+    function addOpinion() {
+      const nick = document.getElementById("nick").value;
+      const opinion = document.getElementById("opinion").value;
+      const rating = document.getElementById("rating").value;
+      const container = document.getElementById("opinionBox");
+
+      const entry = document.createElement("div");
+      entry.className = "opinion-entry";
+      entry.innerHTML = `<div class="nick">${nick}</div><div>${opinion}</div><div class="stars">${rating}</div>`;
+
+      container.prepend(entry);
+
+      document.getElementById("nick").value = "";
+      document.getElementById("opinion").value = "";
+      document.getElementById("rating").value = "";
+    }
   </script>
 </body>
 </html>
