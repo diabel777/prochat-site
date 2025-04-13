@@ -1,18 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProChat</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a0a;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Początkowa zawartość, która zostanie usunięta przez skrypt -->
+<div id="old-content">
+  <h1>Stara wersja strony</h1>
+  <p>Ta zawartość zniknie automatycznie po załadowaniu strony.</p>
+</div>
+
 <script>
-  // 🧹 Usuwamy zawartość strony
+  // 🧹 Usuwamy starą zawartość strony
   document.body.innerHTML = '';
 
-  // 🛠️ Tworzymy nową zawartość
+  // 🛠️ Tworzymy nową zawartość dynamicznie
   const container = document.createElement('div');
   container.style.padding = '100px 20px';
   container.style.textAlign = 'center';
   container.style.color = 'white';
   container.innerHTML = `
-    <h1 style="font-size: 48px; text-shadow: 0 0 10px #00ffcc;">Nowa Strona ProChat</h1>
-    <p style="font-size: 20px;">To jest nowa zawartość strony. Wszystko zostało zresetowane.</p>
+    <h1 style="font-size: 48px; text-shadow: 0 0 10px #00ffcc;">PROCHAT</h1>
+    <p style="font-size: 20px;">🚀 Nowa wersja strony aktywna! Zmieniamy się dla Ciebie.</p>
     <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands"
-       style="background:#00ff88;padding:12px 24px;border-radius:10px;color:black;text-decoration:none;font-weight:bold;">Dodaj Bota</a>
+       style="background:#00ff88;padding:12px 24px;border-radius:10px;color:black;text-decoration:none;font-weight:bold;display:inline-block;margin:10px;">
+       ➕ Dodaj Bota
+    </a>
+    <a href="https://discord.gg/c7gcHErE"
+       style="background:#0099ff;padding:12px 24px;border-radius:10px;color:white;text-decoration:none;font-weight:bold;display:inline-block;margin:10px;">
+       🛠️ Dołącz do Supportu
+    </a>
+    <div style="margin-top:40px;padding:20px;background:#001f33;border-radius:10px;max-width:600px;margin-left:auto;margin-right:auto;">
+      <h2 style="color:#00ccff;">📝 Aktualizacje</h2>
+      <p style="line-height: 1.6;">
+        ✅ Aktualizacje od poniedziałku do piątku – 5x w tygodniu<br>
+        📅 <strong>13.04.2025:</strong> Bot po angielsku<br>
+        📅 <strong>14.04.2025:</strong> Start wersji polskiej!
+      </p>
+    </div>
   `;
-
   document.body.appendChild(container);
 </script>
+
+</body>
+</html>
