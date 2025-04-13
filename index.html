@@ -6,132 +6,128 @@
   <title>ProChat – Twoja opinia</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: radial-gradient(ellipse at center, #000000 0%, #090909 100%);
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Orbitron', sans-serif;
-      color: white;
+      background: linear-gradient(135deg, #000000, #0f0f0f);
+      color: #00f0ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    header {
       text-align: center;
+      margin-bottom: 1rem;
     }
-
-    .container {
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 16px;
-      box-shadow: 0 0 20px #0ff;
-    }
-
-    h1 {
-      font-size: 2em;
-      color: #00ffff;
-    }
-
-    .logo {
+    header img {
       width: 100px;
-      margin: 0 auto 20px;
     }
-
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      color: #0f0;
-      font-weight: bold;
+    h1 {
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
     }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      font-size: 1em;
+    .actions {
+      margin: 1rem 0;
     }
-
-    button {
-      padding: 10px 20px;
-      background-color: #00ffff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: bold;
-    }
-
-    .rating {
-      margin-top: 20px;
-      color: #ffd700;
-    }
-
-    .stars {
-      font-size: 1.2em;
-    }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 0.8em;
-      color: #888;
-    }
-
-    .buttons {
-      margin-top: 20px;
-    }
-
-    .buttons a {
-      margin: 0 10px;
-      padding: 10px 20px;
-      background: #00ffff;
-      border-radius: 12px;
+    .actions a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #00f0ff;
       color: black;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      display: inline-block;
+      transition: background 0.3s;
     }
-
-    @media (max-width: 600px) {
-      .container {
-        margin: 20px;
-        padding: 20px;
-      }
+    .actions a:hover {
+      background: #00c4d6;
+    }
+    .form-container {
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      max-width: 400px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .form-container h2 {
+      color: #0f0;
+      margin-bottom: 1rem;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #00f0ff;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .info {
+      text-align: center;
+      margin-top: 1rem;
+      color: #ccc;
+    }
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 2rem 0 1rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    @media (max-width: 500px) {
+      h1 { font-size: 2rem; }
+      .form-container { padding: 1rem; }
     }
   </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/lLdZRAU.png" alt="ProChat Logo" class="logo">
-  <h1>ProChat</h1>
-  <p>Podziel się swoją opinią o bocie ⭐</p>
+  <header>
+    <img src="https://cdn.discordapp.com/attachments/1215992109453563934/1228753519824549998/logo-glow.png" alt="ProChat Logo">
+    <h1>ProChat</h1>
+    <p>Podziel się swoją opinią o bocie ⭐</p>
+    <div class="actions">
+      <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" target="_blank">➕ Dodaj bota</a>
+      <a href="https://discord.gg/c7gcHErE" target="_blank">🎧 Support</a>
+    </div>
+  </header>
 
-  <div class="buttons">
-    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" target="_blank">➕ Dodaj bota</a>
-    <a href="https://discord.gg/c7gcHErE" target="_blank">💬 Support</a>
-  </div>
-
-  <div class="container">
+  <div class="form-container">
+    <h2>📄 Twoja opinia</h2>
     <form action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="_blank">
-      <label for="name">🗒️ Twoja opinia</label>
-      <input type="text" name="entry.1965283058" placeholder="Twoje imię lub nick" required>
-      <textarea name="entry.1339375524" placeholder="Twoja opinia..." required></textarea>
-      <select name="entry.2113179439" required>
+      <input name="entry.367248003" type="text" placeholder="Twoje imię lub nick" required>
+      <textarea name="entry.1000861367" placeholder="Twoja opinia..." required></textarea>
+      <select name="entry.1523582476" required>
         <option value="">Wybierz ocenę</option>
-        <option value="1">⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+        <option value="3">⭐⭐⭐ (3/5)</option>
+        <option value="2">⭐⭐ (2/5)</option>
+        <option value="1">⭐ (1/5)</option>
       </select>
       <button type="submit">Wyślij opinię</button>
     </form>
+    <div class="info">
+      Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br>
+      Ostatnia opinia: „Super bot, działa bezbłędnie!” – <b>diable_777</b>
+    </div>
   </div>
 
-  <div class="rating">
-    Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br>
-    Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777
-  </div>
-
-  <div class="footer">
-    © 2025 ProChat – Strona stworzona przez <strong>diable_777</strong>
-  </div>
+  <footer>
+    © 2025 ProChat – Strona stworzona przez <b>diable_777</b>
+  </footer>
 </body>
 </html>
