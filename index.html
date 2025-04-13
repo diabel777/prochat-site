@@ -8,51 +8,123 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #0a0a0a;
       font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      background-image: url('ProChat.png');
+      background-size: cover;
+      background-position: center;
       color: white;
+      overflow-x: hidden;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.75);
+      min-height: 100vh;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 10px;
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+    }
+
+    .slogan {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #00ffcc, #00ccff);
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    .box {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 15px;
+      border: 2px solid #00ffff;
+    }
+
+    .box h2 {
+      color: #00ccff;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    li::before {
+      content: "🔹 ";
+    }
+
+    footer {
+      margin-top: 50px;
+      color: #999;
+      font-size: 14px;
+    }
+
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px #00ffcc; }
+      50% { text-shadow: 0 0 20px #00ffcc; }
+    }
+
+    .glow {
+      animation: glow 2s infinite;
     }
   </style>
 </head>
 <body>
+  <div class="overlay">
+    <h1 class="glow">PROCHAT</h1>
+    <p class="slogan">Twój przyszły bot – szybki, funkcjonalny i w 100% darmowy.</p>
 
-<!-- Początkowa zawartość, która zostanie usunięta przez skrypt -->
-<div id="old-content">
-  <h1>Stara wersja strony</h1>
-  <p>Ta zawartość zniknie automatycznie po załadowaniu strony.</p>
-</div>
+    <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj Bota</a>
+    <a class="btn" href="https://discord.gg/c7gcHErE">🛠️ Support</a>
 
-<script>
-  // 🧹 Usuwamy starą zawartość strony
-  document.body.innerHTML = '';
-
-  // 🛠️ Tworzymy nową zawartość dynamicznie
-  const container = document.createElement('div');
-  container.style.padding = '100px 20px';
-  container.style.textAlign = 'center';
-  container.style.color = 'white';
-  container.innerHTML = `
-    <h1 style="font-size: 48px; text-shadow: 0 0 10px #00ffcc;">PROCHAT</h1>
-    <p style="font-size: 20px;">🚀 Nowa wersja strony aktywna! Zmieniamy się dla Ciebie.</p>
-    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands"
-       style="background:#00ff88;padding:12px 24px;border-radius:10px;color:black;text-decoration:none;font-weight:bold;display:inline-block;margin:10px;">
-       ➕ Dodaj Bota
-    </a>
-    <a href="https://discord.gg/c7gcHErE"
-       style="background:#0099ff;padding:12px 24px;border-radius:10px;color:white;text-decoration:none;font-weight:bold;display:inline-block;margin:10px;">
-       🛠️ Dołącz do Supportu
-    </a>
-    <div style="margin-top:40px;padding:20px;background:#001f33;border-radius:10px;max-width:600px;margin-left:auto;margin-right:auto;">
-      <h2 style="color:#00ccff;">📝 Aktualizacje</h2>
-      <p style="line-height: 1.6;">
-        ✅ Aktualizacje od poniedziałku do piątku – 5x w tygodniu<br>
-        📅 <strong>13.04.2025:</strong> Bot po angielsku<br>
-        📅 <strong>14.04.2025:</strong> Start wersji polskiej!
+    <div class="box">
+      <h2>📝 Aktualizacje</h2>
+      <p>
+        ✅ Od poniedziałku do piątku pojawiają się nowe aktualizacje!<br>
+        🗓️ <strong>13.04.2025</strong>: Wersja bota głównie po angielsku.<br>
+        🗓️ <strong>14.04.2025</strong>: Praca nad pełną wersją po polsku.
       </p>
     </div>
-  `;
-  document.body.appendChild(container);
-</script>
 
+    <div class="box">
+      <h2>🚧 Funkcje (wkrótce)</h2>
+      <ul>
+        <li>System powitań i pożegnań</li>
+        <li>AutoVoice – kanały głosowe na żądanie</li>
+        <li>Moderacja, poziomy, statusy</li>
+        <li>Integracja z panelami zarządzania</li>
+        <li>Powiadomienia o streamach, postach itp.</li>
+      </ul>
+    </div>
+
+    <footer>Bot w wersji BETA | © 2025 by diable_777</footer>
+  </div>
 </body>
 </html>
