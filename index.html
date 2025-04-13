@@ -2,37 +2,38 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProChat – Twoja opinia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ProChat - Twoja opinia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #000000, #090909 60%, #000000);
       color: white;
-      background-color: black;
       overflow-x: hidden;
     }
 
-    #starfield {
+    .stars {
       position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
       width: 100%;
       height: 100%;
-      background: black;
+      background: transparent url('https://media.giphy.com/media/l0HlSNOxJB956qwfK/giphy.gif') repeat top center;
+      z-index: -1;
+      opacity: 0.15;
     }
 
-    .container {
+    header {
       text-align: center;
-      padding: 60px 20px;
+      padding: 30px 10px 0;
     }
 
-    .logo-img {
+    header img {
       width: 100px;
+      height: 100px;
+      border-radius: 50%;
       margin-bottom: 10px;
+      box-shadow: 0 0 20px cyan;
     }
 
     h1 {
@@ -42,8 +43,8 @@
     }
 
     p {
-      margin-bottom: 20px;
       font-size: 18px;
+      margin-top: 10px;
     }
 
     .buttons {
@@ -52,145 +53,116 @@
 
     .buttons a {
       text-decoration: none;
+      background-color: #00ffff;
+      color: #000;
+      padding: 10px 25px;
+      border-radius: 15px;
       margin: 0 10px;
-      padding: 10px 20px;
-      background: #00ffff;
-      color: black;
-      border-radius: 8px;
+      transition: 0.3s;
       font-weight: bold;
+    }
+
+    .buttons a:hover {
+      background-color: #00cccc;
     }
 
     .update {
       margin-top: 20px;
-      color: #ff4d4d;
       font-size: 18px;
     }
 
-    form {
-      background-color: rgba(0, 0, 0, 0.6);
+    .update strong {
+      color: #ff4d4d;
+    }
+
+    .update span {
+      color: white;
+    }
+
+    .opinion-box {
+      background-color: #111;
       border: 2px solid #00ffff;
-      border-radius: 20px;
+      border-radius: 15px;
       padding: 20px;
-      max-width: 400px;
-      margin: 30px auto;
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    form input, form textarea, form select {
       width: 90%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      border: none;
+      max-width: 500px;
+      margin: 30px auto;
+      box-shadow: 0 0 25px #00ffff66;
     }
 
-    form button {
-      background-color: #00ccff;
-      color: black;
+    .opinion-box h2 {
+      color: #00ff00;
+      margin-top: 0;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
       border: none;
-      padding: 10px 30px;
-      border-radius: 8px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #00cfff;
+      color: #000;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.3s;
     }
 
-    .rating {
-      margin-top: 15px;
+    button:hover {
+      background-color: #00aacc;
     }
 
     footer {
-      margin-top: 40px;
+      text-align: center;
       font-size: 14px;
+      padding: 20px 10px;
       color: #888;
     }
   </style>
 </head>
 <body>
-  <canvas id="starfield"></canvas>
+  <div class="stars"></div>
 
-  <div class="container">
-    <img src="bot.png" alt="ProChat Bot" class="logo-img" />
+  <header>
+    <img src="https://cdn.discordapp.com/avatars/1359864369793728743/5f5bd0d818a2a4fd295a49bc26f69a95.png" alt="Bot ProChat">
     <h1>ProChat</h1>
     <p>Podziel się swoją opinią o bocie ⭐</p>
-
     <div class="buttons">
       <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" target="_blank">➕ Dodaj bota</a>
       <a href="https://discord.gg/c7gcHErE" target="_blank">💬 Support</a>
     </div>
-
     <div class="update">
       ⚠️ <strong>Aktualizacja</strong><br />
-      Bot jest obecnie w <strong>trybie beta</strong>. Więcej nowości już wkrótce!
+      <span>Bot jest obecnie w <strong>trybie beta</strong>. Więcej nowości już wkrótce!</span>
     </div>
+  </header>
 
-    <form id="opiniaForm">
-      <h3>📝 Twoja opinia</h3>
-      <input type="text" placeholder="Twoje imię lub nick" required />
-      <textarea placeholder="Twoja opinia..." rows="4" required></textarea>
-      <select required>
-        <option value="">Wybierz ocenę</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-      </select>
-      <br />
-      <button type="submit">Wyślij opinię</button>
-      <div class="rating">
-        Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br />
-        Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777
-      </div>
-    </form>
+  <div class="opinion-box">
+    <h2>📝 Twoja opinia</h2>
+    <input type="text" placeholder="Twoje imię lub nick" />
+    <textarea placeholder="Twoja opinia..." rows="4"></textarea>
+    <select>
+      <option>Wybierz ocenę</option>
+      <option>⭐</option>
+      <option>⭐⭐</option>
+      <option>⭐⭐⭐</option>
+      <option>⭐⭐⭐⭐</option>
+      <option>⭐⭐⭐⭐⭐</option>
+    </select>
+    <button>Wyślij opinię</button>
 
-    <footer>
-      © 2025 ProChat – Strona stworzona przez diable_777
-    </footer>
+    <p style="margin-top: 20px;">
+      Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br />
+      Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777
+    </p>
   </div>
 
-  <script>
-    // Efekt gwiazd
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      generateStars();
-    }
-
-    function generateStars() {
-      stars = [];
-      for (let i = 0; i < 100; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5,
-          speed: Math.random() * 0.3 + 0.05
-        });
-      }
-    }
-
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#ffffff';
-      stars.forEach(star => {
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-        }
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      requestAnimationFrame(animateStars);
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    animateStars();
-  </script>
+  <footer>
+    © 2025 ProChat – Strona stworzona przez diable_777
+  </footer>
 </body>
 </html>
