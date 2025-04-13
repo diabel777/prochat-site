@@ -14,13 +14,13 @@
       overflow-x: hidden;
     }
 
-    /* === ANIMACJA ŁADOWANIA === */
     #loader {
       position: fixed;
       width: 100vw;
       height: 100vh;
       background: #000;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
@@ -33,6 +33,12 @@
       width: 60px;
       height: 60px;
       animation: spin 1s linear infinite;
+    }
+
+    .loader-text {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #00ffff;
     }
 
     @keyframes spin {
@@ -119,7 +125,6 @@
       animation: fadeIn 3s ease;
     }
 
-    /* === Animacje === */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -141,6 +146,7 @@
 <!-- Ładowanie -->
 <div id="loader">
   <div class="spinner"></div>
+  <div class="loader-text">Ładowanie strony...</div>
 </div>
 
 <!-- Zawartość strony -->
@@ -149,33 +155,33 @@
     <h1>PROCHAT</h1>
     <p class="slogan">Twój przyszły bot – szybki, funkcjonalny i profesjonalny.</p>
 
-    <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj Bota</a>
-    <a class="btn" href="https://discord.gg/c7gcHErE">🛠️ Support</a>
+    <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj bota</a>
+    <a class="btn" href="https://discord.gg/c7gcHErE">🛠️ Serwer wsparcia</a>
 
     <div class="box">
       <h2>📝 Aktualizacje</h2>
       <p>
-        ✅ Aktualizacje codziennie od pon. do pt!<br>
-        📅 <strong>13.04.2025:</strong> Wersja testowa – ENG<br>
-        📅 <strong>14.04.2025:</strong> Start PL wersji!
+        ✅ Aktualizacje od poniedziałku do piątku – pięć razy w tygodniu<br>
+        📅 <strong>13.04.2025:</strong> Wersja testowa – głównie po angielsku<br>
+        📅 <strong>14.04.2025:</strong> Start pełnej wersji po polsku!
       </p>
     </div>
 
     <div class="box">
-      <h2>🚀 Funkcje (wkrótce)</h2>
+      <h2>🚀 Planowane funkcje</h2>
       <ul>
         <li>System powitań i pożegnań</li>
-        <li>AutoVoice</li>
-        <li>Moderacja, levele, statystyki</li>
+        <li>AutoVoice – kanały na żądanie</li>
+        <li>Moderacja, poziomy, statystyki</li>
         <li>Panel zarządzania</li>
+        <li>Powiadomienia o live, postach, nowościach</li>
       </ul>
     </div>
 
-    <footer>Strona zrobiona przez <strong>diable_777</strong> © 2025</footer>
+    <footer>Strona stworzona przez <strong>diable_777</strong> &copy; 2025</footer>
   </div>
 </div>
 
-<!-- Skrypt: po załadowaniu ukryj loader -->
 <script>
   window.addEventListener('load', () => {
     document.getElementById("loader").style.display = "none";
