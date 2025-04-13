@@ -1,104 +1,193 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ProChat – Statystyki i Opinie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProChat – Strona główna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000000 100%);
-      color: #fff;
+      background: #000;
+      color: white;
       overflow-x: hidden;
     }
-
-    .section {
-      border: 2px solid cyan;
-      border-radius: 20px;
-      padding: 1.5rem;
-      margin: 2rem auto;
-      width: 90%;
-      max-width: 800px;
-      background-color: rgba(0, 0, 0, 0.5);
-      box-shadow: 0 0 15px cyan;
+    canvas#stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .container {
       text-align: center;
+      padding: 4rem 1rem;
     }
-
-    .section h2 {
-      margin: 0 0 1rem 0;
-      font-size: 2rem;
+    img {
+      width: 150px;
+      margin-bottom: 1rem;
     }
-
-    .section p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
+    h1 {
+      font-size: 3rem;
+      color: cyan;
     }
-
-    .icon {
-      font-size: 1.3rem;
-      margin-right: 0.5rem;
+    .btns {
+      margin: 1rem 0;
     }
-
-    .update-date {
+    .btns a {
+      background: #00ffff;
+      color: black;
+      padding: 0.6rem 1.2rem;
+      margin: 0.5rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btns a:hover {
+      background: #00dddd;
+    }
+    .update, .info, .stats, .feedback {
+      margin-top: 2rem;
+      background: rgba(0,0,0,0.6);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 10px cyan;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .label {
+      color: #00ffff;
       font-weight: bold;
     }
-
-    .stars {
-      font-size: 1.5rem;
-      margin-top: 0.5rem;
+    .value {
+      font-size: 2rem;
     }
-
-    .footer {
-      text-align: center;
+    footer {
+      margin-top: 3rem;
       font-size: 0.9rem;
-      margin-bottom: 2rem;
-      color: #999;
+      color: #aaa;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+    }
+    button {
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #00dddd;
     }
   </style>
 </head>
 <body>
-  <div class="section">
-    <p><span class="icon">🤖</span><strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.</p>
-    <p><span class="icon">⚠️</span><strong>Obecnie bot jest w trybie beta. Nowości wkrótce!</strong></p>
-  </div>
+  <canvas id="stars"></canvas>
 
-  <div class="section">
-    <h2><span class="icon">📢</span>Aktualizacje</h2>
-    <p><span class="update-date">13.04.2025</span> – Nowa wersja z systemem ocen i statystyk! <span class="icon">🔥</span></p>
-  </div>
+  <div class="container">
+    <img src="ProChat.png" alt="ProChat Logo" />
+    <h1>ProChat</h1>
+    <div class="btns">
+      <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj Bota</a>
+      <a href="https://discord.gg/c7gcHErE">💬 Support</a>
+    </div>
 
-  <div class="section">
-    <h2><span class="icon">📊</span>Statystyki ProChat</h2>
-    <p><span class="icon">👤</span>Użytkownicy: <span id="users">0</span></p>
-    <p><span class="icon">🌐</span>Serwery: <span id="guilds">0</span></p>
-    <p><span class="icon">💬</span>Komendy: <span id="commands">0</span></p>
-  </div>
+    <div class="info">
+      🤖 <strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.  
+      <br><br>⚠️ Obecnie bot jest w <b>trybie beta</b>. Nowości wkrótce!
+    </div>
 
-  <div class="section">
-    <h2><span class="icon">📝</span>Twoja opinia</h2>
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="_blank">
-      <p><input type="text" name="entry.1234567890" placeholder="Twój nick lub imię" required style="width: 80%; padding: 0.5rem; border-radius: 10px; border: none;"></p>
-      <p><textarea name="entry.0987654321" placeholder="Napisz swoją opinię" required style="width: 80%; height: 100px; padding: 0.5rem; border-radius: 10px; border: none;"></textarea></p>
-      <p class="stars">⭐️⭐️⭐️⭐️⭐️ (ocena w formularzu)</p>
-      <p><button type="submit" style="padding: 0.5rem 1rem; font-size: 1rem; border-radius: 10px; background-color: cyan; color: black; font-weight: bold; border: none; cursor: pointer;">Wyślij opinię</button></p>
-    </form>
+    <div class="update">
+      <h2>📢 Aktualizacje</h2>
+      <p>13.04.2025 – Nowa wersja z systemem ocen i statystyk! 🔥</p>
+    </div>
+
+    <div class="stats">
+      <h2>📊 Statystyki</h2>
+      <p><span class="label">👤 Użytkownicy:</span> <span id="users" class="value">0</span></p>
+      <p><span class="label">🌐 Serwery:</span> <span id="guilds" class="value">0</span></p>
+      <p><span class="label">💻 Komendy:</span> <span id="commands" class="value">0</span></p>
+    </div>
+
+    <div class="feedback">
+      <h2>📝 Twoja opinia</h2>
+      <form onsubmit="event.preventDefault(); alert('Dziękujemy za opinię!');">
+        <input type="text" placeholder="Twój nick lub imię" required />
+        <select required>
+          <option value="">Wybierz ocenę</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+        <textarea rows="4" placeholder="Napisz swoją opinię..." required></textarea>
+        <button type="submit">Wyślij opinię</button>
+      </form>
+    </div>
+
+    <footer>
+      © 2025 ProChat | Stworzone przez diable_777
+    </footer>
   </div>
 
   <script>
-    fetch('stats.json')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('users').textContent = data.users;
-        document.getElementById('guilds').textContent = data.guilds;
-        document.getElementById('commands').textContent = data.commands;
-      })
-      .catch(err => {
-        console.error("Błąd ładowania stats.json", err);
-      });
-  </script>
+    // Gwiazdy w tle
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let stars = [];
 
-  <div class="footer">© 2025 ProChat – Wszelkie prawa zastrzeżone</div>
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+        s.x += s.dx;
+        s.y += s.dy;
+        if (s.x < 0 || s.x > canvas.width) s.dx *= -1;
+        if (s.y < 0 || s.y > canvas.height) s.dy *= -1;
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    // Statystyki z stats.json
+    fetch("stats.json")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("users").textContent = data.users;
+        document.getElementById("guilds").textContent = data.guilds;
+        document.getElementById("commands").textContent = data.commands;
+      })
+      .catch(() => console.warn("Nie znaleziono stats.json"));
+  </script>
 </body>
 </html>
