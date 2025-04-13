@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -62,16 +61,4 @@
   </div>
 
   <script>
-    fetch('stats.json')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('users').textContent = data.users;
-        document.getElementById('guilds').textContent = data.guilds;
-        document.getElementById('commands').textContent = data.commands;
-      })
-      .catch(err => {
-        console.error('Błąd ładowania stats.json:', err);
-      });
-  </script>
-</body>
-</html>
+    fetch('
