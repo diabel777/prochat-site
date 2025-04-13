@@ -53,7 +53,7 @@
     .btns a:hover {
       background: #00dddd;
     }
-    .update, .info, .stats {
+    .update, .info, .stats, .feedback {
       margin-top: 2rem;
       background: rgba(0,0,0,0.6);
       padding: 1.5rem;
@@ -74,6 +74,24 @@
       margin-top: 3rem;
       font-size: 0.9rem;
       color: #aaa;
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+    }
+    button {
+      background: #00ffff;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #00dddd;
     }
   </style>
 </head>
@@ -105,14 +123,32 @@
       <p><span class="label">💻 Komendy:</span> <span id="commands" class="value">0</span></p>
     </div>
 
+    <div class="feedback">
+      <h2>📝 Twoja opinia</h2>
+      <form onsubmit="event.preventDefault(); alert('Dziękujemy za opinię!');">
+        <input type="text" placeholder="Twój nick lub imię" required />
+        <select required>
+          <option value="">Wybierz ocenę</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+        <textarea rows="4" placeholder="Napisz swoją opinię..." required></textarea>
+        <button type="submit">Wyślij opinię</button>
+      </form>
+    </div>
+
     <footer>
       © 2025 ProChat | Stworzone przez diable_777
     </footer>
   </div>
 
   <script>
-    const canvas = document.getElementById(\"stars\");
-    const ctx = canvas.getContext(\"2d\");
+    // Gwiazdy w tle
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     let stars = [];
@@ -129,7 +165,7 @@
 
     function drawStars() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = \"white\";
+      ctx.fillStyle = "white";
       stars.forEach(s => {
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
@@ -143,15 +179,15 @@
     }
     drawStars();
 
-    // Ładowanie statystyk
-    fetch(\"stats.json\")
+    // Statystyki z stats.json
+    fetch("stats.json")
       .then(res => res.json())
       .then(data => {
-        document.getElementById(\"users\").textContent = data.users;
-        document.getElementById(\"guilds\").textContent = data.guilds;
-        document.getElementById(\"commands\").textContent = data.commands;
+        document.getElementById("users").textContent = data.users;
+        document.getElementById("guilds").textContent = data.guilds;
+        document.getElementById("commands").textContent = data.commands;
       })
-      .catch(() => console.warn(\"Nie znaleziono stats.json\"));
+      .catch(() => console.warn("Nie znaleziono stats.json"));
   </script>
 </body>
 </html>
