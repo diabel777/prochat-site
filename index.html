@@ -2,39 +2,69 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ProChat</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0a0a;
-      background-image: url('ProChat.png');
-      background-size: cover;
-      background-position: center;
+      background: #0a0a0a;
       color: white;
+      font-family: 'Segoe UI', sans-serif;
       overflow-x: hidden;
     }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.75);
+    /* === ANIMACJA ŁADOWANIA === */
+    #loader {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      border: 6px solid #222;
+      border-top: 6px solid #00ffff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #content {
+      display: none;
+      background-image: url('ProChat.png');
+      background-size: cover;
+      background-position: center;
       min-height: 100vh;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
       padding: 60px 20px;
       text-align: center;
     }
 
     h1 {
       font-size: 56px;
-      margin-bottom: 10px;
       color: #00ffff;
-      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      animation: fadeInDown 1.2s ease;
     }
 
     .slogan {
       font-size: 20px;
       color: #ccc;
       margin-bottom: 40px;
+      animation: fadeIn 1.5s ease;
     }
 
     .btn {
@@ -49,6 +79,7 @@
       font-weight: bold;
       transition: 0.3s ease;
       box-shadow: 0 0 10px #00ffff;
+      animation: fadeInUp 2s ease;
     }
 
     .btn:hover {
@@ -63,6 +94,7 @@
       padding: 20px;
       border-radius: 15px;
       border: 2px solid #00ffff;
+      animation: fadeInUp 2.5s ease;
     }
 
     .box h2 {
@@ -82,24 +114,40 @@
 
     footer {
       margin-top: 50px;
-      color: #999;
+      color: #888;
       font-size: 14px;
+      animation: fadeIn 3s ease;
     }
 
-    @keyframes glow {
-      0%, 100% { text-shadow: 0 0 10px #00ffcc; }
-      50% { text-shadow: 0 0 20px #00ffcc; }
+    /* === Animacje === */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .glow {
-      animation: glow 2s infinite;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+
+<!-- Ładowanie -->
+<div id="loader">
+  <div class="spinner"></div>
+</div>
+
+<!-- Zawartość strony -->
+<div id="content">
   <div class="overlay">
-    <h1 class="glow">PROCHAT</h1>
-    <p class="slogan">Twój przyszły bot – szybki, funkcjonalny i w 100% darmowy.</p>
+    <h1>PROCHAT</h1>
+    <p class="slogan">Twój przyszły bot – szybki, funkcjonalny i profesjonalny.</p>
 
     <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj Bota</a>
     <a class="btn" href="https://discord.gg/c7gcHErE">🛠️ Support</a>
@@ -107,24 +155,33 @@
     <div class="box">
       <h2>📝 Aktualizacje</h2>
       <p>
-        ✅ Od poniedziałku do piątku pojawiają się nowe aktualizacje!<br>
-        🗓️ <strong>13.04.2025</strong>: Wersja bota głównie po angielsku.<br>
-        🗓️ <strong>14.04.2025</strong>: Praca nad pełną wersją po polsku.
+        ✅ Aktualizacje codziennie od pon. do pt!<br>
+        📅 <strong>13.04.2025:</strong> Wersja testowa – ENG<br>
+        📅 <strong>14.04.2025:</strong> Start PL wersji!
       </p>
     </div>
 
     <div class="box">
-      <h2>🚧 Funkcje (wkrótce)</h2>
+      <h2>🚀 Funkcje (wkrótce)</h2>
       <ul>
         <li>System powitań i pożegnań</li>
-        <li>AutoVoice – kanały głosowe na żądanie</li>
-        <li>Moderacja, poziomy, statusy</li>
-        <li>Integracja z panelami zarządzania</li>
-        <li>Powiadomienia o streamach, postach itp.</li>
+        <li>AutoVoice</li>
+        <li>Moderacja, levele, statystyki</li>
+        <li>Panel zarządzania</li>
       </ul>
     </div>
 
-    <footer>Bot w wersji BETA | © 2025 by diable_777</footer>
+    <footer>Strona zrobiona przez <strong>diable_777</strong> © 2025</footer>
   </div>
+</div>
+
+<!-- Skrypt: po załadowaniu ukryj loader -->
+<script>
+  window.addEventListener('load', () => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  });
+</script>
+
 </body>
 </html>
