@@ -1,127 +1,104 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ProChat – Statystyki i Opinie</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: black;
-      color: white;
-      text-align: center;
+      background: radial-gradient(ellipse at bottom, #0d0d0d 0%, #000000 100%);
+      color: #fff;
       overflow-x: hidden;
     }
-    h1 {
-      color: cyan;
-      margin-top: 2rem;
-    }
-    .stat, .label, .value {
-      font-size: 1.5rem;
-    }
-    .label { color: #00ffff; }
-    .value { font-weight: bold; }
-    .logo {
-      margin-top: 2rem;
-      width: 150px;
-    }
-    .box {
-      margin: 2rem auto;
-      padding: 1.5rem;
-      max-width: 700px;
+
+    .section {
       border: 2px solid cyan;
       border-radius: 20px;
-      background: rgba(0, 0, 0, 0.6);
+      padding: 1.5rem;
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 800px;
+      background-color: rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 15px cyan;
+      text-align: center;
     }
-    form {
-      margin-top: 3rem;
+
+    .section h2 {
+      margin: 0 0 1rem 0;
+      font-size: 2rem;
     }
-    input, textarea, select, button {
-      display: block;
-      width: 80%;
-      margin: 1rem auto;
-      padding: 0.8rem;
-      border-radius: 10px;
-      border: none;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1rem;
+
+    .section p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
     }
-    button {
-      background: cyan;
-      color: black;
-      cursor: pointer;
+
+    .icon {
+      font-size: 1.3rem;
+      margin-right: 0.5rem;
+    }
+
+    .update-date {
       font-weight: bold;
     }
+
     .stars {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
+      font-size: 1.5rem;
+      margin-top: 0.5rem;
     }
-    .stars input {
-      display: none;
-    }
-    .stars label {
-      font-size: 2rem;
-      color: gray;
-      cursor: pointer;
-    }
-    .stars input:checked ~ label,
-    .stars label:hover,
-    .stars label:hover ~ label {
-      color: gold;
-    }
-    .section {
-      margin: 2rem 0;
+
+    .footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <img src="ProChat.png" alt="Logo" class="logo">
-  <h1>📊 Statystyki ProChat</h1>
-  <div class="stat"><span class="label">👤 Użytkownicy:</span> <span id="users" class="value">0</span></div>
-  <div class="stat"><span class="label">🌐 Serwery:</span> <span id="guilds" class="value">0</span></div>
-  <div class="stat"><span class="label">🛠️ Komendy:</span> <span id="commands" class="value">0</span></div>
-
-  <div class="section box">
-    🤖 <strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.<br>
-    ⚠️ Obecnie bot jest w trybie beta. Nowości wkrótce!
-  </div>
-
-  <div class="section box">
-    📢 <strong>Aktualizacje</strong><br>
-    13.04.2025 – Nowa wersja z systemem ocen i statystyk! 🔥
+  <div class="section">
+    <p><span class="icon">🤖</span><strong>ProChat</strong> to bot Discord z funkcjami moderacji, zabawy i automatyzacji.</p>
+    <p><span class="icon">⚠️</span><strong>Obecnie bot jest w trybie beta. Nowości wkrótce!</strong></p>
   </div>
 
   <div class="section">
-    <h1>💬 Oceń ProChat</h1>
+    <h2><span class="icon">📢</span>Aktualizacje</h2>
+    <p><span class="update-date">13.04.2025</span> – Nowa wersja z systemem ocen i statystyk! <span class="icon">🔥</span></p>
+  </div>
+
+  <div class="section">
+    <h2><span class="icon">📊</span>Statystyki ProChat</h2>
+    <p><span class="icon">👤</span>Użytkownicy: <span id="users">0</span></p>
+    <p><span class="icon">🌐</span>Serwery: <span id="guilds">0</span></p>
+    <p><span class="icon">💬</span>Komendy: <span id="commands">0</span></p>
+  </div>
+
+  <div class="section">
+    <h2><span class="icon">📝</span>Twoja opinia</h2>
     <form action="https://docs.google.com/forms/d/e/1FAIpQLSeI5H2ZMdylg0L-JBU_fRaLZG4RNwipnCxk_VMsoRL10XxYGw/formResponse" method="POST" target="_blank">
-      <input type="text" name="entry.964778799" placeholder="Twój nick lub imię" required>
-      <textarea name="entry.1525679114" placeholder="Napisz swoją opinię" rows="4" required></textarea>
-      <div class="stars">
-        <input type="radio" id="star5" name="entry.1821151230" value="5"><label for="star5">★</label>
-        <input type="radio" id="star4" name="entry.1821151230" value="4"><label for="star4">★</label>
-        <input type="radio" id="star3" name="entry.1821151230" value="3"><label for="star3">★</label>
-        <input type="radio" id="star2" name="entry.1821151230" value="2"><label for="star2">★</label>
-        <input type="radio" id="star1" name="entry.1821151230" value="1"><label for="star1">★</label>
-      </div>
-      <button type="submit">Wyślij opinię</button>
+      <p><input type="text" name="entry.1234567890" placeholder="Twój nick lub imię" required style="width: 80%; padding: 0.5rem; border-radius: 10px; border: none;"></p>
+      <p><textarea name="entry.0987654321" placeholder="Napisz swoją opinię" required style="width: 80%; height: 100px; padding: 0.5rem; border-radius: 10px; border: none;"></textarea></p>
+      <p class="stars">⭐️⭐️⭐️⭐️⭐️ (ocena w formularzu)</p>
+      <p><button type="submit" style="padding: 0.5rem 1rem; font-size: 1rem; border-radius: 10px; background-color: cyan; color: black; font-weight: bold; border: none; cursor: pointer;">Wyślij opinię</button></p>
     </form>
   </div>
 
   <script>
-    fetch("stats.json")
+    fetch('stats.json')
       .then(response => response.json())
       .then(data => {
-        document.getElementById("users").textContent = data.users;
-        document.getElementById("guilds").textContent = data.guilds;
-        document.getElementById("commands").textContent = data.commands;
+        document.getElementById('users').textContent = data.users;
+        document.getElementById('guilds').textContent = data.guilds;
+        document.getElementById('commands').textContent = data.commands;
       })
       .catch(err => {
         console.error("Błąd ładowania stats.json", err);
       });
   </script>
+
+  <div class="footer">© 2025 ProChat – Wszelkie prawa zastrzeżone</div>
 </body>
 </html>
