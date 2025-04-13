@@ -1,169 +1,147 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProChat – Twoja opinia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Orbitron', sans-serif;
       background: black;
-      color: white;
       overflow-x: hidden;
     }
 
-    body::before {
-      content: "";
+    .stars {
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(0,255,255,0.05) 0%, transparent 70%);
-      animation: moveStars 30s linear infinite;
       z-index: -1;
+      background: radial-gradient(circle, #0ff 1px, transparent 1px), black;
+      background-size: 3px 3px;
+      animation: twinkle 10s linear infinite;
     }
 
-    @keyframes moveStars {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-1000px); }
+    @keyframes twinkle {
+      from { background-position: 0 0; }
+      to { background-position: -1000px 1000px; }
     }
 
     .container {
       text-align: center;
       padding: 2rem;
-    }
-
-    .logo {
-      width: 100px;
-      margin-bottom: 1rem;
+      color: white;
     }
 
     h1 {
-      font-size: 2.5rem;
-      color: cyan;
+      font-size: 3rem;
+      color: #00f2ff;
     }
 
-    .buttons {
-      margin: 1rem 0;
-    }
-
-    .buttons a {
-      background-color: cyan;
+    .btn {
+      background-color: #00f2ff;
+      border: none;
       padding: 0.6rem 1.2rem;
-      margin: 0 0.5rem;
-      border-radius: 12px;
+      margin: 0.5rem;
+      border-radius: 10px;
       color: black;
-      text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    .opinion-box {
-      background-color: #111;
+    .btn:hover {
+      background-color: #0ff;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.8);
       padding: 2rem;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
       margin: 2rem auto;
-      box-shadow: 0 0 15px cyan;
+      border-radius: 20px;
+      max-width: 400px;
+      box-shadow: 0 0 20px #00f2ff;
     }
 
-    .opinion-box h2 {
+    .card h2 {
       color: lime;
-      margin-bottom: 1rem;
     }
 
     input, textarea, select {
       width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
       border: none;
-      border-radius: 10px;
-    }
-
-    button {
-      width: 100%;
-      padding: 0.6rem;
-      background-color: cyan;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
     }
 
     .footer {
       margin-top: 2rem;
+      color: #888;
       font-size: 0.8rem;
-      color: #aaa;
     }
 
-    .update-box {
+    .updates {
+      background: rgba(255, 255, 255, 0.05);
       margin-top: 3rem;
       padding: 1rem;
       border-radius: 15px;
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid cyan;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .update-box h3 {
-      color: #00ffff;
-      margin-bottom: 0.5rem;
-    }
-
-    .update-box ul {
-      text-align: left;
+      color: #ccc;
     }
   </style>
 </head>
+
 <body>
+  <div class="stars"></div>
   <div class="container">
-    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="Bot logo" class="logo" />
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712107.png" alt="Bot logo" width="80" />
     <h1>ProChat</h1>
     <p>Podziel się swoją opinią o bocie ⭐</p>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">➕ Dodaj bota</a>
+    <a href="https://discord.gg/c7gcHErE" class="btn">💬 Support</a>
 
-    <div class="buttons">
-      <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">➕ Dodaj bota</a>
-      <a href="https://discord.gg/c7gcHErE">🔊 Support</a>
+    <div class="updates">
+      <h3>📢 Aktualizacja</h3>
+      <p>Bot jest obecnie w <strong>trybie beta</strong>. Więcej nowości już wkrótce!</p>
     </div>
 
-    <div class="opinion-box">
-      <h2>📄 Twoja opinia</h2>
-      <form>
-        <input type="text" placeholder="Twoje imię lub nick" required />
-        <textarea placeholder="Twoja opinia..." required></textarea>
-        <select required>
+    <div class="card">
+      <h2>📋 Twoja opinia</h2>
+      <form name="submit-to-google-sheet">
+        <input name="name" type="text" placeholder="Twoje imię lub nick" required />
+        <textarea name="opinion" placeholder="Twoja opinia..." required></textarea>
+        <select name="rating" required>
           <option value="">Wybierz ocenę</option>
-          <option>⭐</option>
-          <option>⭐⭐</option>
-          <option>⭐⭐⭐</option>
-          <option>⭐⭐⭐⭐</option>
-          <option>⭐⭐⭐⭐⭐</option>
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
         </select>
-        <button type="submit">Wyślij opinię</button>
+        <button type="submit" class="btn">Wyślij opinię</button>
       </form>
-      <p>Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)</p>
-      <p>Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777</p>
+
+      <p id="stats">Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br>Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777</p>
     </div>
 
-    <div class="update-box">
-      <h3>🛠️ Aktualizacje</h3>
-      <ul>
-        <li>🔄 Bot jest w <strong>trybie beta</strong> – mogą występować drobne błędy.</li>
-        <li>📦 Nowa wersja 1.0.3 – poprawiona responsywność na telefonach.</li>
-        <li>🌌 Dodano animowane tło z gwiazdami.</li>
-        <li>📋 Formularz opinii działa z Google Sheets.</li>
-      </ul>
-    </div>
-
-    <div class="footer">
-      © 2025 ProChat – Strona stworzona przez <strong>diable_777</strong>
-    </div>
+    <div class="footer">© 2025 ProChat – Strona stworzona przez diable_777</div>
   </div>
+
+  <script>
+    const form = document.forms['submit-to-google-sheet'];
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+        method: 'POST',
+        body: new FormData(form)
+      }).then(() => {
+        alert("Dziękujemy za opinię!");
+        form.reset();
+      });
+    });
+  </script>
 </body>
+
 </html>
