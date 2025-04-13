@@ -2,149 +2,105 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ProChat - Twoja opinia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProChat – Twoja opinia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at center, #000000, #090909 60%, #000000);
-      color: white;
-      overflow-x: hidden;
+      background: #000 url('bot-image.png') repeat;
+      background-size: contain;
+      color: #fff;
     }
-
-    .stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: transparent url('https://media.giphy.com/media/l0HlSNOxJB956qwfK/giphy.gif') repeat top center;
-      z-index: -1;
-      opacity: 0.15;
-    }
-
     header {
       text-align: center;
-      padding: 30px 10px 0;
+      padding: 2rem 1rem 1rem;
     }
-
     header img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 10px;
-      box-shadow: 0 0 20px cyan;
+      width: 64px;
+      margin-bottom: 1rem;
     }
-
     h1 {
-      font-size: 48px;
-      color: #00ffff;
-      margin: 0;
+      font-size: 3rem;
+      color: #00f7ff;
     }
-
-    p {
-      font-size: 18px;
-      margin-top: 10px;
+    .subtitle {
+      color: #ccc;
+      font-size: 1.2rem;
     }
-
     .buttons {
-      margin: 20px 0;
+      margin: 1rem 0;
     }
-
     .buttons a {
-      text-decoration: none;
-      background-color: #00ffff;
+      background: #00f7ff;
       color: #000;
-      padding: 10px 25px;
-      border-radius: 15px;
-      margin: 0 10px;
-      transition: 0.3s;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
       font-weight: bold;
     }
-
-    .buttons a:hover {
-      background-color: #00cccc;
-    }
-
     .update {
-      margin-top: 20px;
-      font-size: 18px;
+      color: #ff4242;
+      font-weight: bold;
+      margin-top: 2rem;
+      font-size: 1.1rem;
     }
-
-    .update strong {
-      color: #ff4d4d;
+    .form-container {
+      background: rgba(0,0,0,0.75);
+      border: 2px solid #00f7ff;
+      border-radius: 1rem;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 2rem auto;
+      box-shadow: 0 0 20px #00f7ff;
     }
-
-    .update span {
-      color: white;
-    }
-
-    .opinion-box {
-      background-color: #111;
-      border: 2px solid #00ffff;
-      border-radius: 15px;
-      padding: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin: 30px auto;
-      box-shadow: 0 0 25px #00ffff66;
-    }
-
-    .opinion-box h2 {
+    .form-container h2 {
       color: #00ff00;
-      margin-top: 0;
+      margin-bottom: 1rem;
     }
-
     input, textarea, select, button {
       width: 100%;
-      padding: 10px;
-      margin-top: 10px;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 0.5rem;
+      font-family: 'Orbitron', sans-serif;
     }
-
     button {
-      background-color: #00cfff;
+      background: #00cfff;
       color: #000;
-      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: bold;
     }
-
-    button:hover {
-      background-color: #00aacc;
+    .rating {
+      margin-top: 1rem;
     }
-
     footer {
       text-align: center;
-      font-size: 14px;
-      padding: 20px 10px;
+      padding: 2rem;
+      font-size: 0.85rem;
       color: #888;
     }
   </style>
 </head>
 <body>
-  <div class="stars"></div>
-
   <header>
-    <img src="https://cdn.discordapp.com/avatars/1359864369793728743/5f5bd0d818a2a4fd295a49bc26f69a95.png" alt="Bot ProChat">
+    <img src="bot-image.png" alt="ProChat bot" />
     <h1>ProChat</h1>
-    <p>Podziel się swoją opinią o bocie ⭐</p>
+    <p class="subtitle">Podziel się swoją opinią o bocie ⭐</p>
     <div class="buttons">
-      <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" target="_blank">➕ Dodaj bota</a>
-      <a href="https://discord.gg/c7gcHErE" target="_blank">💬 Support</a>
+      <a href="#">➕ Dodaj bota</a>
+      <a href="#">💬 Support</a>
     </div>
-    <div class="update">
-      ⚠️ <strong>Aktualizacja</strong><br />
-      <span>Bot jest obecnie w <strong>trybie beta</strong>. Więcej nowości już wkrótce!</span>
-    </div>
+    <p class="update">⚠️ Aktualizacja<br><span style="color: #fff; font-weight: normal;">Bot jest obecnie w <b>trybie beta</b>. Więcej nowości już wkrótce!</span></p>
   </header>
 
-  <div class="opinion-box">
-    <h2>📝 Twoja opinia</h2>
+  <div class="form-container">
+    <h2>📋 Twoja opinia</h2>
     <input type="text" placeholder="Twoje imię lub nick" />
-    <textarea placeholder="Twoja opinia..." rows="4"></textarea>
+    <textarea placeholder="Twoja opinia..."></textarea>
     <select>
       <option>Wybierz ocenę</option>
       <option>⭐</option>
@@ -154,11 +110,10 @@
       <option>⭐⭐⭐⭐⭐</option>
     </select>
     <button>Wyślij opinię</button>
-
-    <p style="margin-top: 20px;">
-      Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)<br />
-      Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777
-    </p>
+    <div class="rating">
+      <p>Średnia ocena: ⭐⭐⭐⭐☆ (4.2/5)</p>
+      <p>Ostatnia opinia: „Super bot, działa bezbłędnie!” – diable_777</p>
+    </div>
   </div>
 
   <footer>
