@@ -1,183 +1,182 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProChat – Twój Discord Bot</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #0f0f1a, #1f1f2e);
-            color: white;
-            overflow-x: hidden;
-        }
-
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #0f0f1a;
-            color: #00ffaa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            animation: fadeout 1s ease 3s forwards;
-        }
-
-        @keyframes fadeout {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .container {
-            text-align: center;
-            padding: 100px 20px 40px;
-        }
-
-        .container img {
-            width: 200px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .btn {
-            display: inline-block;
-            margin: 20px 10px;
-            padding: 12px 25px;
-            background: #00ffaa;
-            color: #000;
-            border: none;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background: #00ddcc;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
-            animation: fadein 2s ease;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 20px;
-            width: 250px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .feature:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: #00ffaa;
-        }
-
-        .update-box {
-            background: rgba(255, 255, 255, 0.05);
-            margin: 50px auto;
-            padding: 20px;
-            max-width: 500px;
-            border-radius: 15px;
-            animation: fadein 2s ease;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 30px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        @keyframes fadein {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProChat</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at center, #111 0%, #000 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 1.5s ease-in;
+    }
+    .logo {
+      width: 120px;
+      animation: pulse 2s infinite;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin: 10px 0;
+    }
+    .btn {
+      background: #00ffcc;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+    }
+    .update-box, .side-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      width: fit-content;
+      border: 1px solid #00ffcc;
+      animation: slideIn 1.2s ease-in-out;
+    }
+    .rating-section {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid #00ffcc;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+      width: 90%;
+      max-width: 600px;
+      animation: fadeIn 2s ease;
+    }
+    .stars span {
+      font-size: 2rem;
+      color: #444;
+      cursor: pointer;
+    }
+    .stars span.active {
+      color: gold;
+    }
+    .opinions {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .opinion {
+      background: rgba(255, 255, 255, 0.06);
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border-left: 3px solid #00ffcc;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .reply {
+      margin-left: 20px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideIn {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="loader">Ładowanie strony...</div>
+  <div class="container">
+    <img src="ProChat.png" alt="ProChat Logo" class="logo" />
+    <h1>ProChat</h1>
+    <a class="btn" href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands">Dodaj Bota</a>
+    <a class="btn" href="https://discord.gg/c7gcHErE">Support</a>
 
-    <div class="container">
-        <img src="ProChat.png" alt="ProChat Logo">
-        <h1>ProChat – Twój Bot do Discorda</h1>
-        <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">➕ Dodaj Bota</a>
-        <a href="https://discord.gg/c7gcHErE" class="btn">📞 Support</a>
-
-        <div class="features">
-            <div class="feature">
-                <i class="fas fa-music"></i>
-                <h3>Muzyka</h3>
-                <p>Obsługa YouTube i Spotify – bez opóźnień.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Moderacja</h3>
-                <p>Zaawansowane komendy do zarządzania serwerem.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-robot"></i>
-                <h3>Automatyzacja</h3>
-                <p>Powitaj nowych, pożegnaj starych – w pełni automatycznie.</p>
-            </div>
-            <div class="feature">
-                <i class="fas fa-chart-line"></i>
-                <h3>Statystyki</h3>
-                <p>Monitoruj aktywność i rozwój swojego serwera.</p>
-            </div>
-        </div>
-
-        <div class="update-box">
-            <h2 style="color:#00ffaa">🛠️ Aktualizacje</h2>
-            <p>🔁 Aktualizacje co kilka dni – możesz zgłaszać propozycje!</p>
-            <p>📅 13.04.2025 – Bot bardziej po polsku 🇵🇱</p>
-            <p>📅 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
-        </div>
-
-        <div class="footer">
-            © 2025 ProChat. Stworzone przez <strong>diable_777</strong> 💻
-        </div>
+    <div class="update-box">
+      <h3>📢 Aktualizacje</h3>
+      <p>🔄 Aktualizacje 5 razy w tygodniu! Możesz proponować zmiany na Discordzie!</p>
+      <p>📅 13.04.2025 – Bot bardziej po angielsku</p>
+      <p>📅 14.04.2025 – Próba pełnego tłumaczenia na polski!</p>
     </div>
-</body>
 
+    <div class="side-box"> 
+      <strong>Funkcje</strong>
+      <ul>
+        <li>Automatyczne kanały</li>
+        <li>Panel zarządzania</li>
+        <li>Responsywność</li>
+      </ul>
+    </div>
+
+    <div class="side-box">
+      <strong>ProChat w liczbach</strong><br>
+      Online 24/7<br>
+      Wersja: 1.0 BETA
+    </div>
+
+    <div class="rating-section">
+      <h3>Co sądzisz o ProChat?</h3>
+      <div class="stars" id="stars">
+        <span data-rate="1">★</span><span data-rate="2">★</span><span data-rate="3">★</span><span data-rate="4">★</span><span data-rate="5">★</span>
+      </div>
+      <input type="text" id="userName" placeholder="Twoje imię" style="margin-top:10px; padding:5px; width:90%; max-width:300px;">
+      <textarea id="comment" placeholder="Twoja opinia..." style="margin-top:10px; width:90%; max-width:500px; height:60px; padding:5px;"></textarea>
+      <br>
+      <button class="btn" onclick="submitReview()">Wyślij opinię</button>
+      <div class="opinions" id="opinions"></div>
+    </div>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll('#stars span');
+    let currentRating = 0;
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        currentRating = star.getAttribute('data-rate');
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < currentRating; i++) {
+          stars[i].classList.add('active');
+        }
+      });
+    });
+
+    function submitReview() {
+      const name = document.getElementById('userName').value;
+      const comment = document.getElementById('comment').value;
+      const box = document.createElement('div');
+      box.className = 'opinion';
+      box.innerHTML = `<strong>${name}</strong> – ${'★'.repeat(currentRating)}<br>${comment}<br><a href="#" onclick="replyTo(this)">💬 Odpowiedz</a><div class='reply-box'></div>`;
+      document.getElementById('opinions').prepend(box);
+      document.getElementById('comment').value = '';
+      document.getElementById('userName').value = '';
+      stars.forEach(s => s.classList.remove('active'));
+    }
+
+    function replyTo(link) {
+      const box = link.nextElementSibling;
+      if (box.innerHTML === '') {
+        box.innerHTML = `<input type='text' placeholder='Twoja odpowiedź' style='width:80%; padding:4px;'><button class='btn' onclick='sendReply(this)'>Wyślij</button>`;
+      }
+    }
+
+    function sendReply(btn) {
+      const input = btn.previousElementSibling;
+      const replyText = input.value;
+      const wrapper = btn.parentElement;
+      wrapper.innerHTML = `<div class='reply'>💬 ${replyText}</div>`;
+    }
+  </script>
+</body>
 </html>
