@@ -16,20 +16,33 @@
       background-repeat: no-repeat;
       min-height: 100vh;
     }
+
+    .beta-banner {
+      background-color: #ffcc00;
+      color: #000;
+      text-align: center;
+      padding: 10px 0;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
     .container {
       text-align: center;
-      padding-top: 150px;
-      background-color: rgba(0, 0, 0, 0.6); /* dla kontrastu */
+      padding-top: 100px;
+      background-color: rgba(0, 0, 0, 0.65);
+      min-height: calc(100vh - 50px);
     }
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    .beta {
-      font-size: 20px;
-      color: #ffcc00;
+
+    img {
+      width: 200px;
       margin-bottom: 20px;
     }
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
     .btn {
       background-color: #00ff88;
       border: none;
@@ -40,32 +53,62 @@
       cursor: pointer;
       color: black;
       transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
     }
+
     .btn:hover {
       background-color: #00cc66;
     }
+
     .update-box {
       margin-top: 40px;
-      background: #000000bb;
+      background: rgba(0, 0, 0, 0.8);
       display: inline-block;
       padding: 20px;
       border-radius: 10px;
       max-width: 90%;
     }
+
+    .update-box h2 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+
+      .update-box {
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="beta-banner">
+    🔧 ProChat jest obecnie w trybie BETA – mogą występować błędy!
+  </div>
+
   <div class="container">
-    <img src="ProChat.png" alt="ProChat Logo" width="200" />
+    <img src="ProChat.png" alt="ProChat Logo" />
     <h1>PROCHAT</h1>
-    <p class="beta">🔧 Bot jest obecnie w trybie BETA — mogą występować błędy!</p>
     <a href="https://discord.com/api/oauth2/authorize?client_id=1359864369793728743&permissions=1644971949559&scope=bot%20applications.commands" class="btn">Dodaj Bota</a>
     <a href="https://discord.gg/c7gcHErE" class="btn">Support</a>
+
     <div class="update-box">
-      <h2>Aktualizacje</h2>
-      <p>✅ Aktualizacje od poniedziałku do piątku, czyli 5 razy w tygodniu. Propozycje aktualizacji można zgłaszać na Discordzie!<br>
-      🗓️ 13.04.2025 – Bot bardziej po angielsku, mało polskiego.<br>
-      🗓️ 14.04.2025 – Planujemy pełną wersję polskiego bota!</p>
+      <h2>📝 Aktualizacje</h2>
+      <p>
+        ✅ Aktualizacje od poniedziałku do piątku – czyli 5 razy w tygodniu!<br>
+        💬 Propozycje zmian można zgłaszać na Discordzie.<br>
+        📅 <strong>13.04.2025</strong>: Bot bardziej po angielsku, mało polskiego.<br>
+        📅 <strong>14.04.2025</strong>: Spróbujemy zrobić pełną wersję po polsku!
+      </p>
     </div>
   </div>
 </body>
